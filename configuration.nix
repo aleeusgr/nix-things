@@ -54,14 +54,7 @@
 
   services.printing.enable = true; #CUPS
 
-  #programs.direnv.enable = true;
-  #programs.direnv.nix-direnv.enable = true;
-
   virtualisation.docker.enable = true;
-
-  environment.pathsToLink = [
-    "/share/nix-direnv"
-  ];
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
@@ -113,6 +106,8 @@
     tldr 
     ntfs3g
     vlc
+    direnv
+    nix-direnv
 
     # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
     ghc
@@ -120,7 +115,7 @@
     cabal-install
     nodejs # For coc-nvim
     haskellPackages.haskell-language-server
-    haskellPackages.calligraphy
+    haskellPackages.calligraphy #do I need this? 
     (neovim.override {
       configure = {
         packages.myPlugins = with pkgs.vimPlugins; {
@@ -132,7 +127,7 @@
     #finished
     blas #hmatrix dependencies
     lapack #hmatrix dependencies
-    docker-compose
+    # docker-compose
     pre-commit
     yarn
     python
@@ -144,8 +139,7 @@
 
   environment.variables.EDITOR = "nvim";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
+  #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -174,6 +168,13 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 
+  environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
+  # if you also want support for flakes
+  nixpkgs.overlays = [
+    (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
+  ];
   nix = {
     binaryCaches          = [ "https://hydra.iohk.io" "https://iohk.cachix.org" ];
     binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
@@ -181,7 +182,9 @@
     extraOptions = ''
     	keep-outputs = true
       keep-derivations = true
+      experimental-features = nix-command flakes
       '';
-      # experimental-features = nix-command flakes # this should be inside double quote marks
+  # nix options for derivations to persist garbage collection
   };
+
 }
