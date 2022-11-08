@@ -54,8 +54,8 @@
 
   services.printing.enable = true; #CUPS
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  #programs.direnv.enable = true;
+  #programs.direnv.nix-direnv.enable = true;
 
   virtualisation.docker.enable = true;
 
@@ -84,7 +84,7 @@
       obsidian
       calibre
       zotero
-      zoom
+      #zoom
       discord
       zoom-us
     ];
