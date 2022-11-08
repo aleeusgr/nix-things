@@ -54,6 +54,15 @@
 
   services.printing.enable = true; #CUPS
 
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+
+  virtualisation.docker.enable = true;
+
+  environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
+
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
@@ -137,14 +146,6 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
-
-  virtualisation.docker.enable = true;
-
-  environment.pathsToLink = [
-    "/share/nix-direnv"
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
