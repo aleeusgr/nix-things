@@ -48,7 +48,6 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   
-
   # Configure keymap in X11
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
@@ -71,7 +70,14 @@
     home.packages = with pkgs; [ 
       atool 
       httpie 
-
+      firefox
+      brave 
+      obsidian
+      calibre
+      zotero
+      zoom
+      discord
+      zoom-us
     ];
     #programs.bash.enable = true; 
     programs.bash = {
@@ -98,16 +104,6 @@
     tldr 
     ntfs3g
     vlc
-
-    firefox
-    brave 
-    obsidian
-    calibre
-    zotero
-    zoom
-    discord
-    zoom-us
-
 
     # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
     ghc
@@ -141,14 +137,14 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  #programs.direnv.enable = true;
-  #programs.direnv.nix-direnv.enable = true;
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
-  #virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
-  #environment.pathsToLink = [
-  #  "/share/nix-direnv"
-  #];
+  environment.pathsToLink = [
+    "/share/nix-direnv"
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -161,7 +157,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -177,14 +173,14 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 
-  #nix = {
-  #  binaryCaches          = [ "https://hydra.iohk.io" "https://iohk.cachix.org" ];
-  #  binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
-  #  package = pkgs.nixFlakes; # or versioned attributes like nixVersions.nix_2_8
-  #  extraOptions = ''
-  #  	keep-outputs = true
-  #      keep-derivations = true
-  #  	experimental-features = nix-command flakes
-  #    '';
-  #};
+  nix = {
+    binaryCaches          = [ "https://hydra.iohk.io" "https://iohk.cachix.org" ];
+    binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
+    package = pkgs.nixFlakes; # or versioned attributes like nixVersions.nix_2_8
+    extraOptions = ''
+    	keep-outputs = true
+      keep-derivations = true
+      '';
+      # experimental-features = nix-command flakes # this should be inside double quote marks
+  };
 }
