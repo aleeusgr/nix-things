@@ -80,6 +80,7 @@
       #zoom
       discord
       zoom-us
+      obs-studio
     ];
     #programs.bash.enable = true; 
     programs.bash = {
