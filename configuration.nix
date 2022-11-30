@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
+      #<home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -68,32 +68,21 @@
     initialPassword = "pass";
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
-  home-manager.users.alex = { pkgs, ... }: {
-    home.packages = with pkgs; [ 
-      atool 
-      httpie 
-      firefox
-      brave 
-      obsidian
-      calibre
-      zotero
-      #zoom
-      discord
-      zoom-us
-      obs-studio
-    ];
-    #programs.bash.enable = true; 
-    programs.bash = {
-    enable = true;
-    profileExtra = ''
-      if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-         GIT_PROMPT_ONLY_IN_REPO=1
-         source $HOME/.bash-git-prompt/gitprompt.sh
-      fi
-    '';
-  };
-  };
-  home-manager.useGlobalPkgs = true;
+  #home-manager.users.alex = { pkgs, ... }: {
+  #  home.packages = with pkgs; [ 
+  #  ];
+  #  #programs.bash.enable = true; 
+  #  programs.bash = {
+  #  enable = true;
+  #  profileExtra = ''
+  #    if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+  #       GIT_PROMPT_ONLY_IN_REPO=1
+  #       source $HOME/.bash-git-prompt/gitprompt.sh
+  #    fi
+  #  '';
+  #};
+  #};
+  #home-manager.useGlobalPkgs = true;
   nixpkgs.config.allowUnfree = true;  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -110,6 +99,17 @@
     direnv
     nix-direnv
 
+    atool 
+    httpie 
+    firefox
+    brave 
+    obsidian
+    calibre
+    zotero
+    #zoom
+    discord
+    zoom-us
+    obs-studio
     # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
     ghc
     cabal2nix
