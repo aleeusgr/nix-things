@@ -1,18 +1,33 @@
 {
-  description = "plutus-testing";
-  nixConfig.bash-prompt = "\\[\\e[0m\\][\\[\\e[0;2m\\]plutus-testing \\[\\e[0;1m\\]plutus-testing \\[\\e[0;93m\\]\\w\\[\\e[0m\\]]\\[\\e[0m\\]$ \\[\\e[0m\\]";
+ description = "my-system";
+ nixConfig.bash-prompt = "\\[\\e[0m\\][\\[\\e[0;2m\\]plutus-testing \\[\\e[0;1m\\]plutus-testing \\[\\e[0;93m\\]\\w\\
+[\\e[0m\\]]\\[\\e[0m\\]$ \\[\\e[0m\\]";
+  # inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
 
-  inputs = {
-  #  nixpkgs.follows = "plutip/nixpkgs";
-  #  haskell-nix.follows = "plutip/haskell-nix";
-
-  #  plutip.url = "github:mlabs-haskell/plutip";
-  };
   outputs = { self, nixpkgs }: {
-    # replace 'joes-desktop' with your hostname here.
-    nixosConfigurations.alex-desktop = nixpkgs.lib.nixosSystem {
+
+    nixosConfigurations.container = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ ./configuration.nix ];
+      modules =
+        [ ({ pkgs, ... }: {
+
+            # Let 'nixos-version --json' know about the Git revision
+            # of this flake.
+            system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
+
+            # Network configuration.
+            # networking.useDHCP = false;
+            # networking.firewall.allowedTCPPorts = [ 80 ];
+
+            # Enable a web server.
+            # services.httpd = {
+            #  enable = true;
+            #  adminAddr = "morty@example.org";
+            };
+          })
+          ./configuration.nix
+        ];
     };
+
   };
 }
