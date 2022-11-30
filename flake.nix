@@ -6,7 +6,7 @@
 
   outputs = { self, nixpkgs }: {
 
-    nixosConfigurations.container = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules =
         [ ({ pkgs, ... }: {
@@ -23,7 +23,7 @@
             # services.httpd = {
             #  enable = true;
             #  adminAddr = "morty@example.org";
-            };
+            #};
           })
           ./configuration.nix
         ];
