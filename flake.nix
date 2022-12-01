@@ -10,6 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    cardano-node.url = "input-output-hk/cardano-node";
+
     #nurpkgs.url = github:nix-community/NUR;
 
     #homeage = {
@@ -47,6 +49,11 @@
             #};
           })
           ./configuration.nix
+
+        ];
+      packages = with inputs.cardano-node.packages.x86_64-linux; [
+        cardano-node
+        cardano-cli
         ];
     };
 
