@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cardano-node.url = "input-output-hk/cardano-node";
+    cardano-node.url = "github:input-output-hk/cardano-node";
 
     #nurpkgs.url = github:nix-community/NUR;
 
