@@ -1,7 +1,6 @@
 {
  description = "my-system";
- nixConfig.bash-prompt = "\\[\\e[0m\\][\\[\\e[0;2m\\]plutus-testing \\[\\e[0;1m\\]plutus-testing \\[\\e[0;93m\\]\\w\\
-[\\e[0m\\]]\\[\\e[0m\\]$ \\[\\e[0m\\]";
+ #nixConfig.bash-prompt = "\\[\\e[0m\\][\\[\\e[0;2m\\]plutus-testing \\[\\e[0;1m\\]plutus-testing \\[\\e[0;93m\\]\\w\\[\\e[0m\\]]\\[\\e[0m\\]$ \\[\\e[0m\\]";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";

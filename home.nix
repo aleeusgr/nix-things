@@ -7,7 +7,7 @@ in
     (import "${home-manager}/nixos")
   ];
 
-  home-manager.users.my_username = {
+  home-manager.users.alex = {
     /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
   };
 }
