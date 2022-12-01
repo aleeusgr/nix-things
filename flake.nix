@@ -27,7 +27,7 @@
     #};
 
   };
-  outputs = { self, nixpkgs, home-manager}: {
+  outputs = { self, nixpkgs, home-manager, cardano-node}: {
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -51,7 +51,7 @@
           ./configuration.nix
 
         ];
-      packages = with inputs.cardano-node.packages.x86_64-linux; [
+      packages = with cardano-node.packages.x86_64-linux; [
         cardano-node
         cardano-cli
         ];
