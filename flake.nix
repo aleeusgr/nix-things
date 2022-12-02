@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    cardano-node.url = "github:input-output-hk/cardano-node";
+    # cardano-node.url = "github:input-output-hk/cardano-node";
 
     #nurpkgs.url = github:nix-community/NUR;
 
@@ -31,29 +31,17 @@
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+
       modules =
         [ ({ pkgs, ... }: {
 
-            # Let 'nixos-version --json' know about the Git revision
-            # of this flake.
+            # Let 'nixos-version --json' know about the Git revision of this flake.
             system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
 
-            # Network configuration.
-            # networking.useDHCP = false;
-            # networking.firewall.allowedTCPPorts = [ 80 ];
-
-            # Enable a web server.
-            # services.httpd = {
-            #  enable = true;
-            #  adminAddr = "morty@example.org";
-            #};
+            environment.systemPackages = [inputs.cardano-node.packages.x86_64-linux.cardano-node];
           })
+          
           ./configuration.nix
-
-        ];
-      packages = with cardano-node.packages.x86_64-linux; [
-        cardano-node
-        cardano-cli
         ];
     };
 
