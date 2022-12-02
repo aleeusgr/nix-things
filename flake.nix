@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # cardano-node.url = "github:input-output-hk/cardano-node";
+    cardano-node.url = "github:input-output-hk/cardano-node";
 
     #nurpkgs.url = github:nix-community/NUR;
 
@@ -38,7 +38,7 @@
             # Let 'nixos-version --json' know about the Git revision of this flake.
             system.configurationRevision = nixpkgs.lib.mkIf (self ? rev) self.rev;
 
-            environment.systemPackages = [inputs.cardano-node.packages.x86_64-linux.cardano-node];
+            environment.systemPackages = [cardano-node.packages.x86_64-linux.cardano-node];
           })
           
           ./configuration.nix
