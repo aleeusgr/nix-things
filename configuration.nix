@@ -88,6 +88,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # home
     neovim
     tmux
     git
@@ -99,6 +100,7 @@
     direnv
     nix-direnv
 
+    #system
     atool 
     httpie 
     firefox
@@ -110,6 +112,8 @@
     discord
     zoom-us
     obs-studio
+
+    # haskell.nix
     # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
     ghc
     cabal2nix
@@ -128,14 +132,10 @@
     #finished
     blas #hmatrix dependencies
     lapack #hmatrix dependencies
-    # docker-compose
     pre-commit
     yarn
     python
 
-    # stack #for https://github.com/aleeusgr/open-games-hs
-    stylish-haskell #haskell code formatter	
-    hlint
   ];
 
   environment.variables.EDITOR = "nvim";
