@@ -1,5 +1,6 @@
 {
   "nodes": {
+<<<<<<< HEAD
     "CHaP": {
       "flake": false,
       "locked": {
@@ -5292,11 +5293,14 @@
         "type": "github"
       }
     },
+=======
+>>>>>>> d45050d (lock)
     "home-manager": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ],
+<<<<<<< HEAD
         "utils": "utils_25"
       },
       "locked": {
@@ -5305,6 +5309,16 @@
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "478610aa37c8339eacabfa03f07dacf5574edd47",
+=======
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1670058827,
+        "narHash": "sha256-T+yyncPpZWeIkFrG/Cgj21iopULY3BZGWIhcT5ZmCgM=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "eb3598cf44aa10f2a16fe38488a102c0f474d766",
+>>>>>>> d45050d (lock)
         "type": "github"
       },
       "original": {
@@ -5313,6 +5327,7 @@
         "type": "github"
       }
     },
+<<<<<<< HEAD
     "hpc-coveralls": {
       "flake": false,
       "locked": {
@@ -7632,10 +7647,20 @@
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "f3d9d4bd898cca7d04af2ae4f6ef01f2219df3d6",
+=======
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1669791787,
+        "narHash": "sha256-KBfoA2fOI5+wCrm7PR+j7jHqXeTkVRPQ0m5fcKchyuU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e76c78d20685a043d23f5f9e0ccd2203997f1fb1",
+>>>>>>> d45050d (lock)
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
+        "ref": "nixos-unstable",
         "type": "indirect"
       }
     },
@@ -10662,6 +10687,7 @@
     },
     "root": {
       "inputs": {
+<<<<<<< HEAD
         "cardano-node": "cardano-node",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_24"
@@ -11492,6 +11518,25 @@
       "original": {
         "owner": "divnix",
         "repo": "yants",
+        "type": "github"
+=======
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs"
+>>>>>>> d45050d (lock)
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     }
