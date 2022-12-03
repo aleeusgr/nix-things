@@ -115,23 +115,23 @@
 
     # haskell.nix
     # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
-    ghc
-    cabal2nix
-    cabal-install
-    nodejs # For coc-nvim
-    haskellPackages.haskell-language-server
-    haskellPackages.calligraphy #do I need this? 
-    (neovim.override {
-      configure = {
-        packages.myPlugins = with pkgs.vimPlugins; {
-          start = [ coc-nvim ];
-          opt = [];
-        };
-      };
-     })
-    #finished
-    blas #hmatrix dependencies
-    lapack #hmatrix dependencies
+    # ghc
+    # cabal2nix
+    # cabal-install
+    # nodejs # For coc-nvim
+    # haskellPackages.haskell-language-server
+    # haskellPackages.calligraphy #do I need this? 
+    # (neovim.override {
+    #   configure = {
+    #     packages.myPlugins = with pkgs.vimPlugins; {
+    #       start = [ coc-nvim ];
+    #       opt = [];
+    #     };
+    #   };
+    #  })
+    # #finished
+    # blas #hmatrix dependencies
+    # lapack #hmatrix dependencies
     pre-commit
     yarn
     python
