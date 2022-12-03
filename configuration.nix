@@ -186,6 +186,6 @@
   #    experimental-features = nix-command flakes
   #    '';
   # nix options for derivations to persist garbage collection
-  };
+  #};
 
 }
