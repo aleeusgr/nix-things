@@ -4,7 +4,7 @@ let
   nixosSystem = inputs.nixpkgs.lib.nixosSystem;
 in
 {
-  dell-prec = nixosSystem {
+  dell-M3800 = nixosSystem {
     inherit system;
     specialArgs = { inherit inputs; };
     modules = [
