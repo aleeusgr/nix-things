@@ -10,6 +10,7 @@ This series aims to complement the existing explanations from the more formal do
 - [Cheatsheet](https://nixos.wiki/wiki/Cheatsheet)
 - [https://nixos.wiki/wiki/Overview_of_the_Nix_Language](https://nixos.wiki/wiki/Overview_of_the_Nix_Language)
 - [Nix Pills](https://nixos.org/guides/nix-pills/)
+- [NixOS and Home Manager migration](https://gvolpe.com/blog/nix-flakes/)
 
 
 ## Personalization
