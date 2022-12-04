@@ -112,13 +112,13 @@
     discord
     zoom-us
     obs-studio
+    nodejs # For coc-nvim
 
     # haskell.nix
     # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
     # ghc
     # cabal2nix
     # cabal-install
-    # nodejs # For coc-nvim
     # haskellPackages.haskell-language-server
     # haskellPackages.calligraphy #do I need this? 
     # (neovim.override {
