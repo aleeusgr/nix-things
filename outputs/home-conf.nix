@@ -8,7 +8,6 @@ in
   ];
 
   home-manager.users.alex = {
-    /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
     home.packages = with pkgs; [
       neovim
       tmux
@@ -54,6 +53,7 @@ in
     virtualisation.docker.enable = true;
     environment.variables.EDITOR = "nvim";
 
+    home-manager.useGlobalPkgs = true;
     programs.bash = {
     enable = true;
     profileExtra = ''

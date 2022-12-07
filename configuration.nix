@@ -5,12 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  #imports =
-  #  [ # Include the results of the hardware scan.
-  #    ./hardware-configuration.nix
-  #    #<home-manager/nixos>
-  #  ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -67,12 +61,6 @@
     initialPassword = "pass";
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
-  #home-manager.users.alex = { pkgs, ... }: {
-  #  home.packages = with pkgs; [ 
-  #  ];
-  #  #programs.bash.enable = true; 
-  #};
-  #home-manager.useGlobalPkgs = true;
   nixpkgs.config.allowUnfree = true;  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
