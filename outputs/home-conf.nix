@@ -53,7 +53,7 @@ in
     virtualisation.docker.enable = true;
     environment.variables.EDITOR = "nvim";
 
-    home-manager.useGlobalPkgs = true;
+    # home-manager.useGlobalPkgs = true;
     programs.bash = {
     enable = true;
     profileExtra = ''

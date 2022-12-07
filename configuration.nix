@@ -72,6 +72,9 @@
     nix-direnv
     atool 
     httpie 
+
+    tmux
+    git
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
