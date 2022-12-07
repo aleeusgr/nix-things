@@ -75,6 +75,7 @@
 
     tmux
     git
+    nvim
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
