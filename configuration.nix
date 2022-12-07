@@ -5,11 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #<home-manager/nixos>
-    ];
+  #imports =
+  #  [ # Include the results of the hardware scan.
+  #    ./hardware-configuration.nix
+  #    #<home-manager/nixos>
+  #  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -54,7 +54,6 @@
 
   services.printing.enable = true; #CUPS
 
-  virtualisation.docker.enable = true;
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
@@ -72,46 +71,21 @@
   #  home.packages = with pkgs; [ 
   #  ];
   #  #programs.bash.enable = true; 
-  #  programs.bash = {
-  #  enable = true;
-  #  profileExtra = ''
-  #    if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-  #       GIT_PROMPT_ONLY_IN_REPO=1
-  #       source $HOME/.bash-git-prompt/gitprompt.sh
-  #    fi
-  #  '';
-  #};
   #};
   #home-manager.useGlobalPkgs = true;
   nixpkgs.config.allowUnfree = true;  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # home
-    neovim
-    tmux
-    git
-    xclip #used for ssh on gitlab
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    tldr 
     ntfs3g
-    vlc
     direnv
     nix-direnv
 
     #system
     atool 
     httpie 
-    firefox
-    brave 
-    obsidian
-    calibre
-    zotero
-    #zoom
-    discord
-    zoom-us
-    obs-studio
     nodejs # For coc-nvim
 
     # haskell.nix
