@@ -75,6 +75,7 @@
 
     tmux
     git
+    nodejs
     neovim
   ];
 
