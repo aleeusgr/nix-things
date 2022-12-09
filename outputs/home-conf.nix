@@ -9,9 +9,9 @@ in
 
   home-manager.users.alex = {
     home.packages = with pkgs; [
-      neovim
-      tmux
-      git
+      #neovim
+      #tmux
+      #git
       tldr 
       vlc
       xclip #used for ssh on gitlab
