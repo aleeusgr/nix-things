@@ -4,56 +4,19 @@
 #in
 {
   imports = [
-    import home-manager.nixosModules.home-manager
+    home-manager.nixosModules.home-manager
   ];
 
   home-manager.users.alex = {
     home.packages = with pkgs; [
-      #neovim
-      #tmux
-      #git
       tldr 
-      vlc
-      xclip #used for ssh on gitlab
-      firefox
-      brave 
-      obsidian
-      calibre
-      zotero
-      #zoom
-      discord
-      zoom-us
-      obs-studio
-      pre-commit
-
-      nodejs 
-      yarn
-      python
-      
-      # haskell.nix
-      # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
-      # ghc
-      # cabal2nix
-      # cabal-install
-      # haskellPackages.haskell-language-server
-      # haskellPackages.calligraphy #do I need this? 
-      # (neovim.override {
-      #   configure = {
-      #     packages.myPlugins = with pkgs.vimPlugins; {
-      #       start = [ coc-nvim ];
-      #       opt = [];
-      #     };
-      #   };
-      #  })
-      # #finished
-      # blas #hmatrix dependencies
-      # lapack #hmatrix dependencies
     ];
 
     virtualisation.docker.enable = true;
     environment.variables.EDITOR = "nvim";
 
     # home-manager.useGlobalPkgs = true;
+
     programs.bash = {
     enable = true;
     profileExtra = ''

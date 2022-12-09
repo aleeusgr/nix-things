@@ -77,6 +77,23 @@
     git
     nodejs
     neovim
+
+    vlc
+    xclip #used for ssh on gitlab
+    firefox
+    brave 
+    obsidian
+    calibre
+    zotero
+    #zoom
+    discord
+    zoom-us
+    obs-studio
+    pre-commit
+
+    nodejs 
+    yarn
+    python
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
