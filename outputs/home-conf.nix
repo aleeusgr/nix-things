@@ -4,7 +4,7 @@
 #in
 {
   imports = [
-    home-manager.nixosModules.home-manager
+    (home-manager.nixosModules.home-manager)
   ];
 
   home-manager.users.alex = {
