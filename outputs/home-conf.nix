@@ -13,19 +13,18 @@
       tldr 
     ];
 
-    virtualisation.docker.enable = true;
-    environment.variables.EDITOR = "nvim";
+    # virtualisation.docker.enable = true;
+    # environment.variables.EDITOR = "nvim";
 
-
-    programs.bash = {
-    enable = true;
-    profileExtra = ''
-      if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-         GIT_PROMPT_ONLY_IN_REPO=1
-         source $HOME/.bash-git-prompt/gitprompt.sh
-      fi
-    '';
-    };
+    # programs.bash = {
+    # enable = true;
+    # profileExtra = ''
+    #   if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+    #      GIT_PROMPT_ONLY_IN_REPO=1
+    #      source $HOME/.bash-git-prompt/gitprompt.sh
+    #   fi
+    # '';
+    # };
   };
   #nix = {
   #  binaryCaches          = [ "https://hydra.iohk.io" "https://iohk.cachix.org" ];
