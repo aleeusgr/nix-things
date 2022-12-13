@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    homeage = {
+      url = github:jordanisaacs/homeage;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     #nurpkgs = {
     #  url = github:nix-community/NUR;
     #  inputs.nixpkgs.follows = "nixpkgs";
@@ -21,7 +26,7 @@
   };
 
   #outputs = inputs @ { self, nixpkgs, nurpkgs, home-manager, tex2nix }:
-  outputs = inputs @ { self, nixpkgs, home-manager, }:
+  outputs = inputs @ { self, nixpkgs, home-manager, homeage }:
     let
       system = "x86_64-linux";
     in
