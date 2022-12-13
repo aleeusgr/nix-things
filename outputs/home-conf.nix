@@ -7,6 +7,7 @@
     (home-manager.nixosModules.home-manager)
   ];
 
+  home-manager.useGlobalPkgs = true;
   home-manager.users.alex = {
     home.packages = with pkgs; [
       tldr 
@@ -15,7 +16,6 @@
     virtualisation.docker.enable = true;
     environment.variables.EDITOR = "nvim";
 
-    # home-manager.useGlobalPkgs = true;
 
     programs.bash = {
     enable = true;
