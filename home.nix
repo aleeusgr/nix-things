@@ -9,5 +9,6 @@ in
 
   home-manager.users.alex = {
     /* Here goes your home-manager config, eg home.packages = [ pkgs.foo ]; */
+    home.packages = [ pkgs.tldr ];
   };
 }

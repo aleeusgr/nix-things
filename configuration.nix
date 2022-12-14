@@ -94,7 +94,6 @@
     git
     xclip #used for ssh on gitlab
     wget
-    tldr 
     ntfs3g
     vlc
     direnv
