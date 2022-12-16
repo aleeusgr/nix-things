@@ -7,6 +7,19 @@ let
 
     defaultPkgs = with pkgs; [ 
     ];
+
+    haskellPkgs = with pkgs.haskellPackages; [
+      #brittany                # code formatter
+      cabal2nix               # convert cabal projects to nix
+      cabal-install           # package manager
+      ghc                     # compiler
+      haskell-language-server # haskell IDE (ships with ghcide)
+      hoogle                  # documentation
+      nix-tree                # visualize nix dependencies
+      ihaskell
+      #ihaskell-blaze 
+      #ghcup
+    ];
 in
   {
     # Let Home Manager install and manage itself:
@@ -36,7 +49,7 @@ in
       # changes in each release.
       stateVersion = "22.11";
 
-      packages = defaultPkgs ;
+      packages = defaultPkgs ++ haskellPkgs ;
 
       sessionVariables = {
         #DISPLAY = ":0";
