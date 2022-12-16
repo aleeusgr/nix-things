@@ -68,21 +68,6 @@
     initialPassword = "pass";
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
-  #home-manager.users.alex = { pkgs, ... }: {
-  #  home.packages = with pkgs; [ 
-  #  ];
-  #  #programs.bash.enable = true; 
-  #  programs.bash = {
-  #  enable = true;
-  #  profileExtra = ''
-  #    if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-  #       GIT_PROMPT_ONLY_IN_REPO=1
-  #       source $HOME/.bash-git-prompt/gitprompt.sh
-  #    fi
-  #  '';
-  #};
-  #};
-  #home-manager.useGlobalPkgs = true;
   nixpkgs.config.allowUnfree = true;  
   # List packages installed in system profile. To search, run:
   # $ nix search wget
