@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #<home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -73,22 +72,21 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # home
+    # TODO: move some packages to home.nix, but which ones?
     neovim
     tmux
     git
     xclip #used for ssh on gitlab
     wget
     ntfs3g
-    vlc
     direnv
     nix-direnv
 
-    #system
     atool 
     httpie 
     firefox
     brave 
+    vlc
     obsidian
     calibre
     zotero
@@ -96,27 +94,9 @@
     discord
     zoom-us
     obs-studio
-    nodejs # For coc-nvim
 
-    # haskell.nix
-    # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
-    # ghc
-    # cabal2nix
-    # cabal-install
-    # haskellPackages.haskell-language-server
-    # haskellPackages.calligraphy #do I need this? 
-    # (neovim.override {
-    #   configure = {
-    #     packages.myPlugins = with pkgs.vimPlugins; {
-    #       start = [ coc-nvim ];
-    #       opt = [];
-    #     };
-    #   };
-    #  })
-    # #finished
-    # blas #hmatrix dependencies
-    # lapack #hmatrix dependencies
     pre-commit
+    nodejs 
     yarn
     python
 
