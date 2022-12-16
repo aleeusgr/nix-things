@@ -6,6 +6,18 @@
   home.username = "alex";
   home.homeDirectory = "/home/alex";
 
+  home.packages = with pkgs; [ 
+  ];
+
+  programs.bash = {
+    enable = true;
+    profileExtra = ''
+      if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+         GIT_PROMPT_ONLY_IN_REPO=1
+         source $HOME/.bash-git-prompt/gitprompt.sh
+      fi
+    '';
+    };
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -19,3 +31,5 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
+
+#};
