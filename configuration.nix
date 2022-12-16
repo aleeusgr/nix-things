@@ -106,6 +106,42 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  nix = {
+    # Automate garbage collection
+    gc = {
+      automatic = true;
+      dates     = "weekly";
+      options   = "--delete-older-than 7d";
+    };
+
+    # Flakes settings
+    package = pkgs.nixVersions.stable;
+    registry.nixpkgs.flake = inputs.nixpkgs;
+
+    settings = {
+      # Automate `nix store --optimise`
+      auto-optimise-store = true;
+
+      # Required by Cachix to be used as non-root user
+      # trusted-users = [ "root" "harryprayiv" "bismuth" ];
+      
+      experimental-features = ["nix-command" "flakes"];
+      
+      # Avoid unwanted garbage collection when using nix-direnv
+      keep-outputs          = true;
+      keep-derivations      = true;
+
+      substituters = [
+      "https://cache.nixos.org/"
+      "https://cache.iog.io"
+      ];
+      trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+      ];
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
