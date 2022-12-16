@@ -104,7 +104,7 @@
 
   environment.variables.EDITOR = "nvim";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix = {
     # Automate garbage collection
@@ -114,9 +114,9 @@
       options   = "--delete-older-than 7d";
     };
 
-    # Flakes settings
-    package = pkgs.nixVersions.stable;
-    registry.nixpkgs.flake = inputs.nixpkgs;
+    ## Flakes settings
+    #package = pkgs.nixVersions.stable;
+    #registry.nixpkgs.flake = inputs.nixpkgs;
 
     settings = {
       # Automate `nix store --optimise`
