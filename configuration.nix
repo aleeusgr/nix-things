@@ -73,32 +73,11 @@
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # TODO: move some packages to home.nix, but which ones?
-    neovim
-    tmux
-    git
-    xclip #used for ssh on gitlab
     wget
     ntfs3g
     direnv
     nix-direnv
 
-    atool 
-    httpie 
-    firefox
-    brave 
-    vlc
-    obsidian
-    calibre
-    zotero
-    #zoom
-    discord
-    zoom-us
-    obs-studio
-
-    pre-commit
-    nodejs 
-    yarn
-    python
 
   ];
 

@@ -6,6 +6,23 @@ let
     homeDirectory = "/home/alex";
 
     defaultPkgs = with pkgs; [ 
+
+    firefox
+    tmux
+    xclip #used for ssh on gitlab
+    brave 
+    vlc
+    obsidian
+    calibre
+    zotero
+    #zoom
+    discord
+    zoom-us
+    pre-commit
+    nodejs 
+    yarn
+    python
+
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
@@ -24,7 +41,10 @@ in
   {
     # Let Home Manager install and manage itself:
     programs.home-manager.enable = true;
-    programs.autorandr.enable = true;
+    programs.autorandr.enable = true; #external monitor
+    programs.obs-studio.enable = true;    
+    programs.git.enable = true;
+    programs.neovim.enable = true;
 
     # https://github.com/magicmonty/bash-git-prompt 
     programs.bash = {
@@ -36,6 +56,8 @@ in
         fi
       '';
       };
+
+      
     home = {
       inherit username homeDirectory ;
 
