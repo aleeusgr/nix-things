@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #<home-manager/nixos>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -52,7 +51,7 @@
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "eurosign:e";
 
-  services.printing.enable = true; #CUPS
+  # services.printing.enable = true; #CUPS
 
   virtualisation.docker.enable = true;
 
@@ -73,52 +72,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # home
-    neovim
-    tmux
-    git
-    xclip #used for ssh on gitlab
+    # TODO: move some packages to home.nix, but which ones?
     wget
     ntfs3g
-    vlc
     direnv
     nix-direnv
 
-    #system
-    atool 
-    httpie 
-    firefox
-    brave 
-    obsidian
-    calibre
-    zotero
-    #zoom
-    discord
-    zoom-us
-    obs-studio
-    nodejs # For coc-nvim
-
-    # haskell.nix
-    # https://jkuokkanen109157944.wordpress.com/2020/11/10/creating-a-haskell-development-environment-with-lsp-on-nixos/
-    # ghc
-    # cabal2nix
-    # cabal-install
-    # haskellPackages.haskell-language-server
-    # haskellPackages.calligraphy #do I need this? 
-    # (neovim.override {
-    #   configure = {
-    #     packages.myPlugins = with pkgs.vimPlugins; {
-    #       start = [ coc-nvim ];
-    #       opt = [];
-    #     };
-    #   };
-    #  })
-    # #finished
-    # blas #hmatrix dependencies
-    # lapack #hmatrix dependencies
-    pre-commit
-    yarn
-    python
 
   ];
 
@@ -126,6 +85,42 @@
 
   #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  nix = {
+    # Automate garbage collection
+    gc = {
+      automatic = true;
+      dates     = "weekly";
+      options   = "--delete-older-than 7d";
+    };
+
+    ## Flakes settings
+    #package = pkgs.nixVersions.stable;
+    #registry.nixpkgs.flake = inputs.nixpkgs;
+
+    settings = {
+      # Automate `nix store --optimise`
+      auto-optimise-store = true;
+
+      # Required by Cachix to be used as non-root user
+      # trusted-users = [ "root" "harryprayiv" "bismuth" ];
+      
+      experimental-features = ["nix-command" "flakes"];
+      
+      # Avoid unwanted garbage collection when using nix-direnv
+      keep-outputs          = true;
+      keep-derivations      = true;
+
+      substituters = [
+      "https://cache.nixos.org/"
+      "https://cache.iog.io"
+      ];
+      trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+      ];
+    };
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -160,16 +155,5 @@
   nixpkgs.overlays = [
     (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
   ];
-  #nix = {
-  #  binaryCaches          = [ "https://hydra.iohk.io" "https://iohk.cachix.org" ];
-  #  binaryCachePublicKeys = [ "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ=" "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo=" ];
-  #  package = pkgs.nixFlakes; # or versioned attributes like nixVersions.nix_2_8
-  #  extraOptions = ''
-  #  	keep-outputs = true
-  #    keep-derivations = true
-  #    experimental-features = nix-command flakes
-  #    '';
-  # nix options for derivations to persist garbage collection
-  #};
 
 }
