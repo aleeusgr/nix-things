@@ -42,10 +42,14 @@ in
     # Let Home Manager install and manage itself:
     programs.home-manager.enable = true;
     programs.autorandr.enable = true; #external monitor
-    programs.obs-studio.enable = true;    
-    programs.git.enable = true;
+    # programs.obs-studio.enable = true;    
     programs.neovim.enable = true;
 
+    programs.git = {
+    enable = true;
+    userName  = "Alex";
+    userEmail = "alexeusgr@yahoo.com";
+    };
     # https://github.com/magicmonty/bash-git-prompt 
     programs.bash = {
       enable = true;
