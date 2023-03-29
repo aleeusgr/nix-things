@@ -1,1 +1,0 @@
-https://github.com/input-output-hk/haskell-course
