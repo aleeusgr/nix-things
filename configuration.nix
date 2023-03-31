@@ -91,11 +91,11 @@
 
   nix = {
     # Automate garbage collection
-    gc = {
-      automatic = true;
-      dates     = "weekly";
-      options   = "--delete-older-than 7d";
-    };
+    # gc = {
+    #   automatic = true;
+    #   dates     = "weekly";
+    #   options   = "--delete-older-than 7d";
+    # };
 
     ## Flakes settings
     #package = pkgs.nixVersions.stable;
