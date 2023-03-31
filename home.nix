@@ -48,7 +48,7 @@ in
     programs.git = {
     enable = true;
     userName  = "Alex";
-    userEmail = "alexeusgr@yahoo.com";
+    userEmail = "alexeusgr@gmail.com";
     };
     # https://github.com/magicmonty/bash-git-prompt 
     programs.bash = {
