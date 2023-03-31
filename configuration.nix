@@ -13,15 +13,19 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  # boot.loader.grub.device = "/dev/sda";
+  # boot.loader.grub.useOSProber = true;
+  # boot.supportedFilesystems = [ "ntfs" ];
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
   # time.timeZone = "Europe/Amsterdam";
   time.timeZone = "Africa/Cairo";
+  time.hardwareClockInLocalTime = true;
+
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
   # Per-interface useDHCP will be mandatory in the future, so this generated config
@@ -87,11 +91,11 @@
 
   nix = {
     # Automate garbage collection
-    gc = {
-      automatic = true;
-      dates     = "weekly";
-      options   = "--delete-older-than 7d";
-    };
+    # gc = {
+    #   automatic = true;
+    #   dates     = "weekly";
+    #   options   = "--delete-older-than 7d";
+    # };
 
     ## Flakes settings
     #package = pkgs.nixVersions.stable;
