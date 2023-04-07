@@ -70,6 +70,10 @@ in
 	  vim-nix
 	];
 
+    programs.neovim.extraConfig = ''
+      set number
+    '';
+
     programs.git = {
 	    enable = true;
 	    userName  = "Alex";
