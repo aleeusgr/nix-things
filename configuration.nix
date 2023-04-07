@@ -57,7 +57,7 @@
 
   # services.printing.enable = true; #CUPS
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
@@ -77,6 +77,7 @@
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     # TODO: move some packages to home.nix, but which ones?
+    neovim
     wget
     ntfs3g
     direnv
