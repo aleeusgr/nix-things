@@ -44,22 +44,47 @@ in
     programs.autorandr.enable = true; #external monitor
     # programs.obs-studio.enable = true;    
     programs.neovim.enable = true;
+    programs.neovim.coc.enable = true;
+    programs.neovim.coc.settings = {
+	  "suggest.noselect" = true;
+	  "suggest.enablePreview" = true;
+	  "suggest.enablePreselect" = false;
+	  "suggest.disableKind" = true;
+	  languageserver = {
+	    haskell = {
+	      command = "haskell-language-server-wrapper";
+	      args = [ "--lsp" ];
+	      rootPatterns = [
+		"*.cabal"
+		"stack.yaml"
+		"cabal.project"
+		"package.yaml"
+		"hie.yaml"
+	      ];
+	      filetypes = [ "haskell" "lhaskell" ];
+	    };
+	  };
+
+	};
+    programs.neovim.plugins = with pkgs.vimPlugins; [
+	  vim-nix
+	];
 
     programs.git = {
-    enable = true;
-    userName  = "Alex";
-    userEmail = "alexeusgr@gmail.com";
-    };
-    # https://github.com/magicmonty/bash-git-prompt 
-    programs.bash = {
-      enable = true;
-      profileExtra = ''
-        if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-           GIT_PROMPT_ONLY_IN_REPO=1
-           source $HOME/.bash-git-prompt/gitprompt.sh
-        fi
-      '';
-      };
+	    enable = true;
+	    userName  = "Alex";
+	    userEmail = "alexeusgr@gmail.com";
+	    };
+	    # https://github.com/magicmonty/bash-git-prompt 
+	    programs.bash = {
+	      enable = true;
+	      profileExtra = ''
+		if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+		   GIT_PROMPT_ONLY_IN_REPO=1
+		   source $HOME/.bash-git-prompt/gitprompt.sh
+		fi
+	      '';
+	      };
 
       
     home = {
@@ -82,7 +107,5 @@ in
         EDITOR = "nvim";
       };
     };
-
-
 
   }
