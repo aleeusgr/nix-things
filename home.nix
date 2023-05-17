@@ -22,6 +22,8 @@ let
     nodejs 
     yarn
     python
+    fragments
+    commitizen
 
     ];
 
