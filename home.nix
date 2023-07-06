@@ -24,7 +24,9 @@ let
     python
     fragments
     commitizen
+    nodePackages.pnpm
 
+    hydrogen
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
