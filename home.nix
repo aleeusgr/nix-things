@@ -75,9 +75,10 @@ in
 	  vim-nix
 	];
 
-    programs.neovim.extraConfig = ''
-      set number
-    '';
+    programs.neovim.extraConfig = lib.fileContents ./init.vim;
+    # programs.neovim.extraConfig = ''
+    #   set number
+    # '';
 
     programs.git = {
 	    enable = true;
