@@ -23,10 +23,11 @@ let
     yarn
     python
     fragments
-    commitizen
+    tldr
     nodePackages.pnpm
 
-    hydrogen
+    mdbook
+    slack
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
