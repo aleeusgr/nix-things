@@ -1,4 +1,4 @@
-- [ ] networking
+- [ ] [networking](file:///nix/store/baxl5d6yzr9ybjib8wvf64mkmrws0m0n-nixos-manual-html/share/doc/nixos/index.html#sec-networking)
 - [ ] libfprint
 - [ ] branch m3800 and vivo
 
