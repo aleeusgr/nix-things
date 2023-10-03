@@ -42,6 +42,24 @@ let
       #ihaskell-blaze 
       #ghcup
     ];
+    pythonPkgs = ps: with ps; [
+
+      (
+        buildPythonPackage rec {
+          pname = "open-interpreter";
+          version = "0.1.7";
+          src = fetchPypi {
+            inherit pname version;
+            sha256 = "";
+          };
+          doCheck = false;
+          propagatedBuildInputs = [
+            # Specify dependencies
+          ];
+        }
+      )
+    ];
+
 in
   {
     # Let Home Manager install and manage itself:
@@ -110,7 +128,7 @@ in
       # changes in each release.
       stateVersion = "22.11";
 
-      packages = defaultPkgs ++ haskellPkgs ;
+      packages = defaultPkgs ++ haskellPkgs ++ pythonPkgs;
 
       sessionVariables = {
         #DISPLAY = ":0";
