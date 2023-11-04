@@ -49,9 +49,10 @@ in
     programs.home-manager.enable = true;
     programs.autorandr.enable = true; #external monitor
     # programs.obs-studio.enable = true;    
-    programs.neovim.enable = true;
-    programs.neovim.coc.enable = true;
-    programs.neovim.coc.settings = {
+    programs.neovim = {
+    enable = true;
+    coc.enable = true;
+    coc.settings = {
 	  "suggest.noselect" = true;
 	  "suggest.enablePreview" = true;
 	  "suggest.enablePreselect" = false;
@@ -72,15 +73,15 @@ in
 	  };
 
 	};
-    programs.neovim.plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
 	  vim-nix
 	];
 
-    programs.neovim.extraConfig = lib.fileContents ./init.vim;
+    extraConfig = lib.fileContents ./init.vim;
     # programs.neovim.extraConfig = ''
     #   set number
     # '';
-
+  };
     programs.git = {
 	    enable = true;
 	    userName  = "Alex";
