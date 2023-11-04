@@ -39,6 +39,7 @@ let
       hoogle                  # documentation
       nix-tree                # visualize nix dependencies
       ihaskell
+      haskell-ci
       #ihaskell-blaze 
       #ghcup
     ];
