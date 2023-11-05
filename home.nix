@@ -50,38 +50,38 @@ in
     programs.autorandr.enable = true; #external monitor
     # programs.obs-studio.enable = true;    
     programs.neovim = {
-    enable = true;
-    coc.enable = true;
-    coc.settings = {
-	  "suggest.noselect" = true;
-	  "suggest.enablePreview" = true;
-	  "suggest.enablePreselect" = false;
-	  "suggest.disableKind" = true;
-	  languageserver = {
-	    haskell = {
-	      command = "haskell-language-server-wrapper";
-	      args = [ "--lsp" ];
-	      rootPatterns = [
-		"*.cabal"
-		"stack.yaml"
-		"cabal.project"
-		"package.yaml"
-		"hie.yaml"
-	      ];
-	      filetypes = [ "haskell" "lhaskell" ];
-	    };
-	  };
+      enable = true;
+      coc.enable = true;
+      coc.settings = {
+            "suggest.noselect" = true;
+            "suggest.enablePreview" = true;
+            "suggest.enablePreselect" = false;
+            "suggest.disableKind" = true;
+            languageserver = {
+              haskell = {
+                command = "haskell-language-server-wrapper";
+                args = [ "--lsp" ];
+                rootPatterns = [
+                  "*.cabal"
+                  "stack.yaml"
+                  "cabal.project"
+                  "package.yaml"
+                  "hie.yaml"
+                ];
+                filetypes = [ "haskell" "lhaskell" ];
+              };
+            };
 
-	};
-    plugins = with pkgs.vimPlugins; [
-	  vim-nix
-	];
+          };
+      plugins = with pkgs.vimPlugins; [
+            vim-nix
+          ];
 
-    extraConfig = lib.fileContents ./init.vim;
-    # programs.neovim.extraConfig = ''
-    #   set number
-    # '';
-  };
+      extraConfig = lib.fileContents ./init.vim;
+      # programs.neovim.extraConfig = ''
+      #   set number
+      # '';
+    };
     programs.git = {
 	    enable = true;
 	    userName  = "Alex";
