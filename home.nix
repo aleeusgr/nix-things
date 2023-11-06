@@ -14,7 +14,7 @@ let
     vlc
     obsidian
     calibre
-    zotero
+    # zotero marked as insecure
     #zoom
     discord
     zoom-us
