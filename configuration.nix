@@ -106,15 +106,8 @@
       # Automate `nix store --optimise`
       auto-optimise-store = true;
 
-      # Required by Cachix to be used as non-root user
-      # trusted-users = [ "root" "harryprayiv" "bismuth" ];
-      
       experimental-features = ["nix-command" "flakes"];
       
-      # Avoid unwanted garbage collection when using nix-direnv
-      keep-outputs          = true;
-      keep-derivations      = true;
-
       # substituters = [
       # "https://cache.nixos.org/"
       # "https://cache.iog.io"
