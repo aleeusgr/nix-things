@@ -153,14 +153,14 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 
-  environment.pathsToLink = [
-    "/share/nix-direnv"
-  ];
+  # environment.pathsToLink = [
+  #   "/share/nix-direnv"
+  # ];
   # if you also want support for flakes
-  nixpkgs.overlays = [
-    (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
-  ];
+  # nixpkgs.overlays = [
+  #   (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
+  # ];
   nixpkgs.config.permittedInsecurePackages = [
-                "python-2.7.18.6"
+                "python-2.7.18.7"
               ];
 }
