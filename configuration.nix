@@ -98,10 +98,6 @@
     #   options   = "--delete-older-than 7d";
     # };
 
-    ## Flakes settings
-    #package = pkgs.nixVersions.stable;
-    #registry.nixpkgs.flake = inputs.nixpkgs;
-
     settings = {
       # Automate `nix store --optimise`
       auto-optimise-store = true;
