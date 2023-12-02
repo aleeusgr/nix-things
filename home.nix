@@ -28,6 +28,7 @@ let
 
     mdbook
     slack
+    docker-compose
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
