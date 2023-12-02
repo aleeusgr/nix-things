@@ -57,7 +57,7 @@
 
   # services.printing.enable = true; #CUPS
 
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
