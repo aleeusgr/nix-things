@@ -24,6 +24,7 @@ let
     python
     fragments
     tldr
+    youtube-music
     nodePackages.pnpm
 
     mdbook
