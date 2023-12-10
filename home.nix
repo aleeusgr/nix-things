@@ -45,6 +45,7 @@ let
       nix-tree                # visualize nix dependencies
       ihaskell
       haskell-ci
+      fourmolu
       #ihaskell-blaze 
       #ghcup
     ];
