@@ -52,10 +52,11 @@ let
 in
   {
     # Let Home Manager install and manage itself:
-    programs.home-manager.enable = true;
-    programs.autorandr.enable = true; #external monitor
+    programs = {
+    home-manager.enable = true;
+    # autorandr.enable = true; #external monitor
     # programs.obs-studio.enable = true;    
-    programs.neovim = {
+    neovim = {
       enable = true;
       coc.enable = true;
       coc.settings = {
@@ -88,13 +89,17 @@ in
       #   set number
       # '';
     };
-    programs.git = {
+    git = {
 	    enable = true;
 	    userName  = "Alex";
 	    userEmail = "alexeusgr@gmail.com";
 	    };
-
-    programs.bash = {
+    direnv = {
+      enable = true;
+      enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+    };
+    bash = {
       enable = true;
       profileExtra = ''
         if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
@@ -103,8 +108,8 @@ in
         fi
       '';
       };
+    };
 
-      
     home = {
       inherit username homeDirectory ;
 
