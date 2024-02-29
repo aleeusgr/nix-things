@@ -26,13 +26,8 @@ let
     tldr
     youtube-music
     nodePackages.pnpm
-
     mdbook
     slack
-
-    # for hyperledger/cacti
-    docker-compose
-    zulu8
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
