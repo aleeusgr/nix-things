@@ -12,7 +12,7 @@ let
     xclip #used for ssh on gitlab
     brave 
     vlc
-    # obsidian
+    obsidian
     calibre
     zotero
     #zoom
