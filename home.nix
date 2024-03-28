@@ -7,6 +7,9 @@ let
 
     defaultPkgs = with pkgs; [ 
 
+    # smart-meteo
+    android-studio
+
     firefox
     tmux
     xclip #used for ssh on gitlab
@@ -26,6 +29,7 @@ let
     tldr
     youtube-music
     nodePackages.pnpm
+    nodePackages.bash-language-server
 
     mdbook
     slack
@@ -53,9 +57,11 @@ in
   {
     # Let Home Manager install and manage itself:
     programs = {
+
     home-manager.enable = true;
     # autorandr.enable = true; #external monitor
     # programs.obs-studio.enable = true;    
+
     neovim = {
       enable = true;
       coc.enable = true;
@@ -77,17 +83,20 @@ in
                 ];
                 filetypes = [ "haskell" "lhaskell" ];
               };
+              bash = {
+                command = "bash-language-server";
+                args = [ "start" ];
+                filetypes = [ "shell" ];
+              };
             };
 
           };
       plugins = with pkgs.vimPlugins; [
+            coc-tsserver
             vim-nix
           ];
 
       extraConfig = lib.fileContents ./init.vim;
-      # programs.neovim.extraConfig = ''
-      #   set number
-      # '';
     };
     git = {
 	    enable = true;

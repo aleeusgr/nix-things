@@ -41,3 +41,6 @@ nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 " Disable audible bell because it's annoying.
 set noerrorbells visualbell t_vb=
 
+let g:coc_global_extensions = [
+            \ 'coc-tsserver',
+            \ ]
