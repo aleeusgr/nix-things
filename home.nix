@@ -13,7 +13,6 @@ let
       obsidian
       calibre
       zotero
-      #zoom
       discord
       zoom-us
       pre-commit
@@ -70,6 +69,7 @@ in
               userName  = "Alex";
               userEmail = "alexeusgr@gmail.com";
       };
+      # Neovim is starting to get huge; should move to a separate file.
       neovim = {
         enable = true;
         coc.enable = true;
@@ -96,6 +96,7 @@ in
             };
         plugins = with pkgs.vimPlugins; [
               vim-nix
+              coc-tsserver
             ];
 
         extraConfig = lib.fileContents ./init.vim;
