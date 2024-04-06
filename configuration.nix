@@ -57,7 +57,7 @@
 
   # services.printing.enable = true; #CUPS
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
@@ -79,11 +79,9 @@
     # TODO: move some packages to home.nix, but which ones?
     neovim
     wget
-    ntfs3g
-    direnv
-    nix-direnv
-
-
+    # ntfs3g
+    # direnv
+    # nix-direnv
   ];
 
   environment.variables.EDITOR = "nvim";
@@ -150,6 +148,6 @@
   #   (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
   # ];
   nixpkgs.config.permittedInsecurePackages = [
-                "python-2.7.18.7"
+                "python-2.7.18.8"
               ];
 }

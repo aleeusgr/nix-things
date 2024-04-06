@@ -14,7 +14,7 @@ let
     vlc
     obsidian
     calibre
-    zotero
+    # zotero marked as insecure
     #zoom
     discord
     zoom-us
@@ -24,7 +24,6 @@ let
     python
     fragments
     tldr
-    youtube-music
     nodePackages.pnpm
     mdbook
     slack
@@ -47,64 +46,67 @@ let
 in
   {
     # Let Home Manager install and manage itself:
+    dconf = {
+      enable = true;
+      settings."org/gnome/desktop/calendar".show-weekdate = true;
+    };
     programs = {
-    home-manager.enable = true;
-    # autorandr.enable = true; #external monitor
-    # programs.obs-studio.enable = true;    
-    neovim = {
-      enable = true;
-      coc.enable = true;
-      coc.settings = {
-            "suggest.noselect" = true;
-            "suggest.enablePreview" = true;
-            "suggest.enablePreselect" = false;
-            "suggest.disableKind" = true;
-            languageserver = {
-              haskell = {
-                command = "haskell-language-server-wrapper";
-                args = [ "--lsp" ];
-                rootPatterns = [
-                  "*.cabal"
-                  "stack.yaml"
-                  "cabal.project"
-                  "package.yaml"
-                  "hie.yaml"
-                ];
-                filetypes = [ "haskell" "lhaskell" ];
+      home-manager.enable = true;
+      # autorandr.enable = true; #external monitor
+      # programs.obs-studio.enable = true;    
+      neovim = {
+        enable = true;
+        coc.enable = true;
+        coc.settings = {
+              "suggest.noselect" = true;
+              "suggest.enablePreview" = true;
+              "suggest.enablePreselect" = false;
+              "suggest.disableKind" = true;
+              languageserver = {
+                haskell = {
+                  command = "haskell-language-server-wrapper";
+                  args = [ "--lsp" ];
+                  rootPatterns = [
+                    "*.cabal"
+                    "stack.yaml"
+                    "cabal.project"
+                    "package.yaml"
+                    "hie.yaml"
+                  ];
+                  filetypes = [ "haskell" "lhaskell" ];
+                };
               };
+
             };
+        plugins = with pkgs.vimPlugins; [
+              vim-nix
+            ];
 
-          };
-      plugins = with pkgs.vimPlugins; [
-            vim-nix
-          ];
-
-      extraConfig = lib.fileContents ./init.vim;
-      # programs.neovim.extraConfig = ''
-      #   set number
-      # '';
-    };
-    git = {
-	    enable = true;
-	    userName  = "Alex";
-	    userEmail = "alexeusgr@gmail.com";
-	    };
-    direnv = {
-      enable = true;
-      enableBashIntegration = true; # see note on other shells below
-      nix-direnv.enable = true;
-    };
-    bash = {
-      enable = true;
-      profileExtra = ''
-        if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-           GIT_PROMPT_ONLY_IN_REPO=1
-           source $HOME/.bash-git-prompt/gitprompt.sh
-        fi
-      '';
+        extraConfig = lib.fileContents ./init.vim;
+        # programs.neovim.extraConfig = ''
+        #   set number
+        # '';
       };
+      git = {
+              enable = true;
+              userName  = "Alex";
+              userEmail = "alexeusgr@gmail.com";
+              };
+      direnv = {
+        enable = true;
+        enableBashIntegration = true; # see note on other shells below
+        nix-direnv.enable = true;
+      };
+      bash = {
+        enable = true;
+        profileExtra = ''
+          if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+             GIT_PROMPT_ONLY_IN_REPO=1
+             source $HOME/.bash-git-prompt/gitprompt.sh
+          fi
+        '';
+        };
     };
-
     home = {
       inherit username homeDirectory ;
 
@@ -125,5 +127,4 @@ in
         EDITOR = "nvim";
       };
     };
-
-  }
+}
