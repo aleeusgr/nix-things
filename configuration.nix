@@ -161,6 +161,6 @@
     (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
   ];
   nixpkgs.config.permittedInsecurePackages = [
-                "python-2.7.18.6"
+                "python-2.7.18.7"
               ];
 }
