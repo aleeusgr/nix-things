@@ -76,10 +76,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    # TODO: move some packages to home.nix, but which ones?
     neovim
     wget
-    # ntfs3g
     # direnv
     # nix-direnv
   ];
@@ -113,16 +111,8 @@
       # ];
     };
   };
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
@@ -140,13 +130,6 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 
-  # environment.pathsToLink = [
-  #   "/share/nix-direnv"
-  # ];
-  # if you also want support for flakes
-  # nixpkgs.overlays = [
-  #   (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
-  # ];
   nixpkgs.config.permittedInsecurePackages = [
                 "python-2.7.18.8"
               ];

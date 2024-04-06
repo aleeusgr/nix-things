@@ -4,29 +4,27 @@ let
 
     username = "alex";
     homeDirectory = "/home/alex";
-
     defaultPkgs = with pkgs; [ 
-
-    firefox
-    tmux
-    xclip #used for ssh on gitlab
-    brave 
-    vlc
-    obsidian
-    calibre
-    # zotero marked as insecure
-    #zoom
-    discord
-    zoom-us
-    pre-commit
-    nodejs 
-    yarn
-    python
-    fragments
-    tldr
-    nodePackages.pnpm
-    mdbook
-    slack
+      firefox
+      tmux
+      xclip #used for ssh on gitlab
+      brave 
+      vlc
+      obsidian
+      calibre
+      zotero
+      #zoom
+      discord
+      zoom-us
+      pre-commit
+      nodejs 
+      yarn
+      python
+      fragments
+      tldr
+      nodePackages.pnpm
+      mdbook
+      slack
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
@@ -45,15 +43,33 @@ let
     ];
 in
   {
-    # Let Home Manager install and manage itself:
     dconf = {
       enable = true;
       settings."org/gnome/desktop/calendar".show-weekdate = true;
     };
     programs = {
+      # Let Home Manager install and manage itself:
       home-manager.enable = true;
       # autorandr.enable = true; #external monitor
-      # programs.obs-studio.enable = true;    
+      bash = {
+        enable = true;
+        profileExtra = ''
+          if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
+             GIT_PROMPT_ONLY_IN_REPO=1
+             source $HOME/.bash-git-prompt/gitprompt.sh
+          fi
+        '';
+      };
+      direnv = {
+        enable = true;
+        enableBashIntegration = true; # see note on other shells below
+        nix-direnv.enable = true;
+      };
+      git = {
+              enable = true;
+              userName  = "Alex";
+              userEmail = "alexeusgr@gmail.com";
+      };
       neovim = {
         enable = true;
         coc.enable = true;
@@ -87,25 +103,6 @@ in
         #   set number
         # '';
       };
-      git = {
-              enable = true;
-              userName  = "Alex";
-              userEmail = "alexeusgr@gmail.com";
-              };
-      direnv = {
-        enable = true;
-        enableBashIntegration = true; # see note on other shells below
-        nix-direnv.enable = true;
-      };
-      bash = {
-        enable = true;
-        profileExtra = ''
-          if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
-             GIT_PROMPT_ONLY_IN_REPO=1
-             source $HOME/.bash-git-prompt/gitprompt.sh
-          fi
-        '';
-        };
     };
     home = {
       inherit username homeDirectory ;
@@ -118,7 +115,7 @@ in
       # You can update Home Manager without changing this value. See
       # the Home Manager release notes for a list of state version
       # changes in each release.
-      stateVersion = "22.11";
+      stateVersion = "21.11";
 
       packages = defaultPkgs ++ haskellPkgs ;
 
