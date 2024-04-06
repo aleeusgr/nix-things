@@ -48,6 +48,10 @@ in
     # Let Home Manager install and manage itself:
     programs.home-manager.enable = true;
     programs.autorandr.enable = true; #external monitor
+    dconf = {
+      enable = true;
+      settings."org/gnome/desktop/calendar".show-weekdate = true;
+    };
     # programs.obs-studio.enable = true;    
     programs.neovim = {
       enable = true;
