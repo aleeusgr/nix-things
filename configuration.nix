@@ -80,8 +80,8 @@
     neovim
     wget
     ntfs3g
-    direnv
-    nix-direnv
+    # direnv
+    # nix-direnv
 
 
   ];
@@ -116,13 +116,13 @@
       keep-derivations      = true;
 
       substituters = [
-      "https://cache.nixos.org/"
-      "https://cache.iog.io"
+      #  "https://cache.nixos.org/"
+      #  "https://cache.iog.io"
       ];
       trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-      "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+      #  "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      #  "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+      #  "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
       ];
     };
   };
@@ -153,12 +153,12 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 
-  environment.pathsToLink = [
-    "/share/nix-direnv"
-  ];
+  # environment.pathsToLink = [
+  #   "/share/nix-direnv"
+  # ];
   # if you also want support for flakes
   nixpkgs.overlays = [
-    (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
+  #  (self: super: { nix-direnv = super.nix-direnv.override { enableFlakes = true; }; } )
   ];
   nixpkgs.config.permittedInsecurePackages = [
                 "python-2.7.18.7"
