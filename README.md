@@ -9,6 +9,7 @@ This series aims to complement the existing explanations from the more formal do
 - [https://nixos.wiki/wiki/Overview_of_the_Nix_Language](https://nixos.wiki/wiki/Overview_of_the_Nix_Language)
 - [Nix Pills](https://nixos.org/guides/nix-pills/)
 - [Home Manager Manual](https://nix-community.github.io/home-manager/)
+- [nixpkgs Haskell Hacking.md](https://github.com/NixOS/nixpkgs/blob/a73feccb2a3ad78e2359b5504a7b8f7c62faa129/pkgs/development/haskell-modules/HACKING.md)
 
 ## About
 An experiment with UX design. A personal developer's environment.
