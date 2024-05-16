@@ -24,6 +24,8 @@ let
       nodePackages.pnpm
       mdbook
       slack
+      clojure
+      leiningen
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
@@ -103,6 +105,14 @@ in
         # programs.neovim.extraConfig = ''
         #   set number
         # '';
+      };
+      obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+        ];
       };
     };
     home = {
