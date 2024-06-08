@@ -24,6 +24,7 @@ let
       nodePackages.pnpm
       mdbook
       slack
+      kooha
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
