@@ -45,26 +45,33 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services = { 
+    xserver = { 
+      enable = true;
+      videoDrivers = [ "nvidia" ];
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+      # Enable the GNOME Desktop Environment.
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
   
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "eurosign:e";
+      # Configure keymap in X11
+      layout = "us";
+      xkbOptions = "eurosign:e";
+      # Enable touchpad support (enabled default in most desktopManager).
+      # libinput.enable = true;
+    };
+    # printing.enable = true; #CUPS
+    ollama = {
+      enable = true;
+    };
+  };
 
-  # services.printing.enable = true; #CUPS
 
   # virtualisation.docker.enable = true;
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.alex = {
