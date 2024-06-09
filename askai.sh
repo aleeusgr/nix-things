@@ -1,6 +1,15 @@
 #!/bin/sh
 
-# ./askollama.sh my_prompt.md assistant my_model
+# Help section
+if [ "$1" = "-h" ]; then
+  echo "a shell script that sends requests to the local ollama backend"
+  echo "Usage: "$0" [prompt_file] [role] [model]"
+  echo "  prompt_file: file containing the prompt (default: prompt.md)"
+  echo "  role: role of the assistant (default: user)"
+  echo "  model: AI model to use (default: codegemma)"
+  exit 0
+fi
+
 prompt_file=${1:-"prompt.md"}
 prompt=$(cat "$prompt_file")
 role=${2:-"user"}
