@@ -28,14 +28,27 @@ vim.o.errorbells = false
 vim.o.visualbell = true
 
 -- require('llm').setup {
---   model = "codegemma:7b",
---   url = "http://localhost:11434", -- llm-ls uses "/api/generate"
---   -- cf https://github.com/ollama/ollama/blob/main/docs/api.md#parameters
+--   model = "codegemma",
+--   backend = "ollama",
+--   url = "http://localhost:11434/api/generate",
 --   request_body = {
---     -- Modelfile options for the model you use
 --     options = {
---       temperature = 0.2,
---       top_p = 0.95,
+--       temperature = 0,
+--       top_p = 0.9,
 --     }
---   }
+--   },
+--   tokens_to_clear = { "<EOT>" },
+--   fim = {
+--     enabled = true,
+--     prefix = "<PRE> ",
+--     middle = " <MID>",
+--     suffix = " <SUF>",
+--   },
+--   accept_keymap = "<M-j>",
+--   dismiss_keymap = "<M-h>",
+--   context_window = 1024,
+--   lsp = {
+--     version = "0.5.2",
+--   },
+--   enable_suggestions_on_startup = false,
 -- }

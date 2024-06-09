@@ -42,6 +42,11 @@ let
       #ihaskell-blaze 
       #ghcup
     ];
+    askaiScript = pkgs.runCommand "askai" { } ''
+      mkdir -p $out/bin
+      cp ${./askai.sh} $out/bin/askai
+      chmod +x $out/bin/askai
+    '';
 in
   {
     dconf = {
@@ -123,7 +128,11 @@ in
       # changes in each release.
       stateVersion = "21.11";
 
-      packages = defaultPkgs ++ haskellPkgs ;
+      packages = defaultPkgs ++ haskellPkgs  ++ [ askaiScript ] ;
+      
+      shellAliases = {
+        askai = "askai";
+      };
 
       sessionVariables = {
         #DISPLAY = ":0";
