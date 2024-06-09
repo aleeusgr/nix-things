@@ -25,6 +25,7 @@ let
       mdbook
       slack
       kooha
+      llm-ls
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
@@ -98,12 +99,15 @@ in
         plugins = with pkgs.vimPlugins; [
               vim-nix
               coc-tsserver
+              llm-nvim
             ];
 
-        extraConfig = lib.fileContents ./init.vim;
-        # programs.neovim.extraConfig = ''
-        #   set number
-        # '';
+        # extraConfig = lib.fileContents ./init.vim;
+        extraConfig = ''
+          lua << EOF
+          ${lib.strings.fileContents ./init.lua}
+          EOF
+        '';
       };
     };
     home = {
