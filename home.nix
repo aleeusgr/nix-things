@@ -26,6 +26,8 @@ let
       slack
       kooha
       llm-ls
+      cargo
+      rustc
     ];
 
     haskellPkgs = with pkgs.haskellPackages; [
@@ -99,6 +101,8 @@ in
         plugins = with pkgs.vimPlugins; [
               vim-nix
               coc-tsserver
+              coc-rust-analyzer
+              coc-rls
               llm-nvim
             ];
 
