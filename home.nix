@@ -35,8 +35,6 @@ let
     cargo
     rustc
     rust-analyzer
-
-    llm-ls #ollama language server 
   ];
 
   haskellPkgs = with pkgs.haskellPackages; [
@@ -111,8 +109,6 @@ in
         vim-nix
         coc-tsserver
         coc-rust-analyzer
-        coc-rls
-        llm-nvim
       ];
 
       # extraConfig = lib.fileContents ./init.vim;
