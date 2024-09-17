@@ -80,6 +80,9 @@ in
       userName = "Alex";
       userEmail = "alexeusgr@gmail.com";
     };
+    gpg = {
+      enable = true;
+    };
     # Neovim is starting to get huge; should move to a separate file.
     neovim = {
       enable = true;
@@ -117,6 +120,13 @@ in
         ${lib.strings.fileContents ./init.lua}
         EOF
       '';
+    };
+  };
+  services = {
+    gnome-keyring.enable = true;
+    gpg-agent = {
+      enable = true;
+      pinentryPackage = pkgs.pinentry-gnome3;
     };
   };
   home = {
