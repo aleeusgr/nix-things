@@ -20,16 +20,17 @@ let
     zotero
     mixxx
 
-    # dev stuff
+    # hacky stuff
     # mdbook
-    # nodePackages.pnpm
     pre-commit
     tldr
     tmux
     xclip
+    youtube-dl
 
     # dev toolchains
     nodejs
+    # nodePackages.pnpm
     python
     gcc
     cargo
