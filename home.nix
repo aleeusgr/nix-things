@@ -12,25 +12,25 @@ let
     discord
     firefox
     fragments
-    kooha
+    kooha #record screen
     obsidian
     slack
     vlc
     zoom-us
     zotero
+    mixxx
 
     # dev stuff
-    mdbook
-    nodejs
-    nodePackages.pnpm
+    # mdbook
+    # nodePackages.pnpm
     pre-commit
-    python
     tldr
     tmux
     xclip
-    yarn
 
-    # rust
+    # dev toolchains
+    nodejs
+    python
     gcc
     cargo
     rustc
