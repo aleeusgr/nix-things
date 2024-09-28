@@ -26,7 +26,7 @@ let
     tldr
     tmux
     xclip
-    youtube-dl
+    yt-dlp
 
     # dev toolchains
     nodejs
