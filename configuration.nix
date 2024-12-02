@@ -23,9 +23,8 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
-  time.timeZone = "Africa/Cairo";
-  time.hardwareClockInLocalTime = true;
+  time.timeZone = "Asia/Ho_Chi_Minh";
+  time.hardwareClockInLocalTime = false;
 
 
   # The global useDHCP flag is deprecated, therefore explicitly set to false here.
