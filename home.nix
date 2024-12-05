@@ -80,12 +80,15 @@ in
       enable = true;
       userName = "Alex";
       userEmail = "alexeusgr@gmail.com";
+      diff-so-fancy.enable = true;
+      signing = {
+        signByDefault = true;
+        key = "971F 77E6 B2E3 8931 2A89  65B7 6A7D 30C3 EFF7 B815";
+      };
       extraConfig = {
-        # Sign all commits using ssh key
         commit.gpgsign = true;
-        gpg.format = "ssh";
-        # gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
-        user.signingkey = "~/.ssh/id_ed25519.pub";
+        tag.gpgsign = true;
+        gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       };
     };
     gpg = {
