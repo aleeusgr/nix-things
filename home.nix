@@ -83,7 +83,7 @@ in
       diff-so-fancy.enable = true;
       signing = {
         signByDefault = true;
-        key = "971F 77E6 B2E3 8931 2A89  65B7 6A7D 30C3 EFF7 B815";
+        key = "30AC A12C B6F8 87C6 ED47  20B2 081A 1146 B587 5D10";
       };
       extraConfig = {
         commit.gpgsign = true;
