@@ -19,6 +19,8 @@ let
     zoom-us
     zotero
     mixxx
+    element-desktop
+    lean4
 
     # hacky stuff
     # mdbook
