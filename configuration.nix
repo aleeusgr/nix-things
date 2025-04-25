@@ -67,6 +67,9 @@
         OLLAMA_ORIGINS="app://obsidian.md*";
       };
     };
+    openssh = {
+      enable = true;
+    };
   };
 
 
@@ -127,7 +130,6 @@
 
   # List services that you want to enable:
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
