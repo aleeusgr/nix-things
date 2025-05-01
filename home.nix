@@ -29,6 +29,7 @@ let
     tmux
     xclip
     yt-dlp
+    radicle-node
 
     # dev toolchains
     nodejs
