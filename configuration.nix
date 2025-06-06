@@ -73,7 +73,7 @@
   };
 
 
-  # virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
@@ -93,6 +93,7 @@
     neovim
     wget
     jq
+    docker-compose
     # direnv
     # nix-direnv
   ];
