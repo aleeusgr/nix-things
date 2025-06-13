@@ -100,7 +100,7 @@ in
     # Neovim is starting to get huge; should move to a separate file.
     neovim = {
       enable = true;
-      coc.enable = true;
+      coc.enable = false; # using coc and lua causes hls to crash.
       coc.settings = {
         "suggest.noselect" = true;
         "suggest.enablePreview" = true;
@@ -122,11 +122,11 @@ in
         };
 
       };
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        coc-tsserver
-        coc-rust-analyzer
-      ];
+      # plugins = with pkgs.vimPlugins; [
+      #   vim-nix
+      #   coc-tsserver
+      #   coc-rust-analyzer
+      # ];
 
       # extraConfig = lib.fileContents ./init.vim;
       extraConfig = ''

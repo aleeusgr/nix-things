@@ -1,31 +1,52 @@
--- Comments in Lua start with a `--`.
+-- Bootstrap lazy.nvim if not installed
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Turn on syntax highlighting.
+-- Setup plugins using lazy.nvim
+require("lazy").setup({
+  -- Add plugins here:
+  { "neovim/nvim-lspconfig" },        -- LSP support
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- better syntax highlighting
+  { "nvim-lua/plenary.nvim" },        -- Useful Lua functions
+  { "LnL7/vim-nix" },                 -- Nix syntax
+  { "nvim-telescope/telescope.nvim" },-- Fuzzy finder
+  { "nvim-lualine/lualine.nvim" },    -- Status line
+  -- Add more as needed
+})
+
+-- Your settings
 vim.o.syntax = "on"
-
--- Show line numbers.
 vim.o.relativenumber = true
 vim.o.number = true
-
--- Always show the status line at the bottom, even if you only have one window open.
 vim.o.laststatus = 2
-
--- Allow hiding buffers with unsaved changes.
 vim.o.hidden = true
-
--- Make search case-insensitive when all characters are lowercase.
 vim.o.ignorecase = true
 vim.o.smartcase = true
-
--- Enable searching as you type, rather than waiting till you press enter.
 vim.o.incsearch = true
-
--- Unbind some useless/annoying default key bindings.
 vim.keymap.set('n', 'Q', '<Nop>', {noremap = true})
-
--- Disable audible bell because it's annoying.
 vim.o.errorbells = false
 vim.o.visualbell = true
+
+-- Example: treesitter config
+require('nvim-treesitter.configs').setup {
+  highlight = { enable = true }
+}
+
+-- Example: lualine config
+require('lualine').setup {}
+
+-- Example: telescope config
+require('telescope').setup {}
 
 -- require('llm').setup {
 --   model = "codegemma",
