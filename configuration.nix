@@ -11,6 +11,7 @@
     ];
 
   hardware.bluetooth.enable = false;
+  hardware.nvidia.open = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -127,6 +128,7 @@
       # "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
       ];
     };
+    package = pkgs.nixVersions.latest;
   };
 
   # List services that you want to enable:

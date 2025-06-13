@@ -26,19 +26,28 @@ let
     # mdbook
     pre-commit
     tldr
-    tmux
+    tmux # configure in programs on line 64
     xclip
     yt-dlp
     radicle-node
 
     # dev toolchains
     nodejs
+    nodePackages.typescript-language-server
+    nodePackages.typescript
+    nodePackages.prettier
+    nodePackages.eslint
     # nodePackages.pnpm
     python
     gcc
     cargo
     rustc
     rust-analyzer
+    # neovim dependencies
+    fd
+    ripgrep
+    nil
+    nixpkgs-fmt
   ];
 
   haskellPkgs = with pkgs.haskellPackages; [
@@ -100,7 +109,7 @@ in
     # Neovim is starting to get huge; should move to a separate file.
     neovim = {
       enable = true;
-      coc.enable = true;
+      coc.enable = false; # using coc and lua causes hls to crash.
       coc.settings = {
         "suggest.noselect" = true;
         "suggest.enablePreview" = true;
@@ -122,16 +131,16 @@ in
         };
 
       };
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-        coc-tsserver
-        coc-rust-analyzer
-      ];
+      # plugins = with pkgs.vimPlugins; [
+      #   vim-nix
+      #   coc-tsserver
+      #   coc-rust-analyzer
+      # ];
 
       # extraConfig = lib.fileContents ./init.vim;
       extraConfig = ''
         lua << EOF
-        ${lib.strings.fileContents ./init.lua}
+          ${lib.strings.fileContents ./init.lua}
         EOF
       '';
     };
