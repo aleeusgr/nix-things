@@ -33,6 +33,10 @@ let
 
     # dev toolchains
     nodejs
+    nodePackages.typescript-language-server
+    nodePackages.typescript
+    nodePackages.prettier
+    nodePackages.eslint
     # nodePackages.pnpm
     python
     gcc

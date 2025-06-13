@@ -39,7 +39,8 @@ vim.o.visualbell = true
 
 -- Example: treesitter config
 require('nvim-treesitter.configs').setup {
-  highlight = { enable = true }
+  highlight = { enable = true },
+  ensure_installed = { "typescript", "tsx", "javascript", "lua", "nix", "haskell" }, -- add your languages
 }
 
 -- Example: lualine config
@@ -52,7 +53,7 @@ require('telescope').setup {}
 require('lspconfig').hls.setup{
   settings = {
     haskell = {
-      formattingProvider = "ormolu", -- or any you prefer
+      formattingProvider = "formolu", -- or any you prefer
     }
   }
 }
@@ -73,6 +74,7 @@ require('lspconfig').nil_ls.setup{
   }
 }
 
+require('lspconfig').ts_ls.setup{}
 -- require('llm').setup {
 --   model = "codegemma",
 --   backend = "ollama",
