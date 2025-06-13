@@ -26,7 +26,7 @@ let
     # mdbook
     pre-commit
     tldr
-    tmux
+    tmux # configure in programs on line 64
     xclip
     yt-dlp
     radicle-node
@@ -39,6 +39,11 @@ let
     cargo
     rustc
     rust-analyzer
+    # neovim dependencies
+    fd
+    ripgrep
+    nil
+    nixpkgs-fmt
   ];
 
   haskellPkgs = with pkgs.haskellPackages; [
