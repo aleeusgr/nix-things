@@ -48,6 +48,21 @@ require('lualine').setup {}
 -- Example: telescope config
 require('telescope').setup {}
 
+-- Setup Haskell LSP using nvim-lspconfig
+require('lspconfig').hls.setup{
+  settings = {
+    haskell = {
+      formattingProvider = "ormolu", -- or any you prefer
+    }
+  }
+}
+
+-- LSP keymaps
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Hover documentation" })
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename symbol" })
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code action" })
+
 -- require('llm').setup {
 --   model = "codegemma",
 --   backend = "ollama",

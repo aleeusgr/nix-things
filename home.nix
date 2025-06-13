@@ -131,7 +131,7 @@ in
       # extraConfig = lib.fileContents ./init.vim;
       extraConfig = ''
         lua << EOF
-        ${lib.strings.fileContents ./init.lua}
+          ${lib.strings.fileContents ./init.lua}
         EOF
       '';
     };
