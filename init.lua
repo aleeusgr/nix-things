@@ -40,7 +40,7 @@ vim.o.visualbell = true
 -- Example: treesitter config
 require('nvim-treesitter.configs').setup {
   highlight = { enable = true },
-  ensure_installed = { "typescript", "tsx", "javascript", "lua", "nix", "haskell" }, -- add your languages
+  ensure_installed = { "typescript", "tsx", "javascript", "lua", "nix", "haskell", "rust" }, -- add your languages
 }
 
 -- Example: lualine config
@@ -54,6 +54,18 @@ require('lspconfig').hls.setup{
   settings = {
     haskell = {
       formattingProvider = "formolu", -- or any you prefer
+    }
+  }
+}
+
+-- Setup Rust LSP (rust-analyzer) using nvim-lspconfig
+require('lspconfig').rust_analyzer.setup{
+  settings = {
+    ['rust-analyzer'] = {
+      cargo = { allFeatures = true },
+      checkOnSave = {
+        command = "clippy"
+      },
     }
   }
 }
@@ -100,3 +112,4 @@ require('lspconfig').ts_ls.setup{}
 --   },
 --   enable_suggestions_on_startup = false,
 -- }
+
