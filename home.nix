@@ -4,68 +4,60 @@ let
 
   username = "alex";
   homeDirectory = "/home/alex";
-  defaultPkgs = with pkgs; [
+  defaultPkgs = with pkgs;
+    [
 
-    # UI
-    brave
-    calibre
-    discord
-    firefox
-    fragments
-    kooha #record screen
-    obsidian
-    slack
-    vlc
-    zoom-us
-    zotero
-    mixxx
-    element-desktop
-    lean4
+      # UI
+      brave
+      calibre
+      discord
+      firefox
+      fragments
+      kooha
+      obsidian
+      slack
+      vlc
+      zoom-us
+      zotero
+      mixxx
+      element-desktop
 
-    # hacky stuff
-    # mdbook
-    pre-commit
-    tldr
-    tmux # configure in programs on line 64
-    xclip
-    yt-dlp
-    radicle-node
+      # hacky stuff
+      pre-commit
+      tldr
+      xclip
+      yt-dlp
+      radicle-node
 
-    # dev toolchains
-    nodejs
-    nodePackages.typescript-language-server
-    nodePackages.typescript
-    nodePackages.prettier
-    nodePackages.eslint
-    # nodePackages.pnpm
-    python
-    gcc
-    cargo
-    rustc
-    rust-analyzer
-    # neovim dependencies
-    fd
-    ripgrep
-    nil
-    nixpkgs-fmt
-  ];
-
-  haskellPkgs = with pkgs.haskellPackages; [
-    #brittany                # code formatter
-    cabal2nix # convert cabal projects to nix
-    cabal-install # package manager
-    ghc # compiler
-    haskell-language-server # haskell IDE (ships with ghcide)
-    hoogle # documentation
-    nix-tree # visualize nix dependencies
-    ihaskell
-    haskell-ci
-    fourmolu
-    #ihaskell-blaze 
-    #ghcup
-  ];
-in
-{
+      # dev toolchains
+      nodejs
+      nodePackages.typescript-language-server
+      nodePackages.typescript
+      nodePackages.prettier
+      nodePackages.eslint
+      lean4
+      python
+      gcc
+      cargo
+      rustc
+      rust-analyzer
+      # neovim dependencies
+      fd
+      ripgrep
+      nil
+      nixpkgs-fmt
+    ] ++ (with pkgs.haskellPackages; [
+      cabal2nix
+      cabal-install
+      ghc
+      haskell-language-server
+      hoogle
+      nix-tree
+      ihaskell
+      haskell-ci
+      fourmolu
+    ]);
+in {
   dconf = {
     enable = true;
     settings."org/gnome/desktop/calendar".show-weekdate = true;
@@ -103,9 +95,7 @@ in
         gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
       };
     };
-    gpg = {
-      enable = true;
-    };
+    gpg = { enable = true; };
     # Neovim is starting to get huge; should move to a separate file.
     neovim = {
       enable = true;
@@ -144,6 +134,7 @@ in
         EOF
       '';
     };
+    tmux = {enable = true; };
   };
   services = {
     gnome-keyring.enable = true;
@@ -165,7 +156,7 @@ in
     # changes in each release.
     stateVersion = "21.11";
 
-    packages = defaultPkgs ++ haskellPkgs;
+    packages = defaultPkgs;
 
     sessionVariables = {
       #DISPLAY = ":0";
