@@ -30,5 +30,16 @@
         ];
       };
     };
+
+    # Add a devShell using mkShell to set the SHELL variable and fix bash shopt error
+    devShells.x86_64-linux.default = let
+      pkgs = import nixpkgs { system = "x86_64-linux"; };
+    in pkgs.mkShell {
+      shellHook = ''
+        export SHELL=/run/current-system/sw/bin/bash
+      '';
+      # Optionally include useful packages in the dev shell
+      buildInputs = [];
+    };
   };
 }
