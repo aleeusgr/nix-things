@@ -56,6 +56,13 @@ let
       ihaskell
       haskell-ci
       fourmolu
+    ]) ++ (with pkgs.python311Packages; [
+      (llm.withPlugins {
+        # llm-docs = true; # needs openAI key
+        llm-groq = true;
+        llm-jq = true;
+        llm-ollama = true;
+      })
     ]);
 in {
   dconf = {

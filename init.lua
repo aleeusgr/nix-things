@@ -63,9 +63,6 @@ require('lspconfig').rust_analyzer.setup{
   settings = {
     ['rust-analyzer'] = {
       cargo = { allFeatures = true },
-      checkOnSave = {
-        command = "clippy"
-      },
     }
   }
 }
@@ -74,7 +71,10 @@ require('lspconfig').rust_analyzer.setup{
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Hover documentation" })
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = "Rename symbol" })
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code action" })
+vim.keymap.set('n', '<leader>ca', vim.lsp.,buf.code_action, { desc = "Code action" })
+vim.keymap.set('n', 'en', vim.diagnostic.goto_next({buffer=0}), { desc = "Code action" })
+vim.keymap.set('n', 'ep', vim.diagnostic.goto_prev({buffer=0}), { desc = "Code action" })
+
 
 require('lspconfig').nil_ls.setup{
   settings = {
