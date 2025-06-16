@@ -62,6 +62,8 @@
       # libinput.enable = true;
     };
     # printing.enable = true; #CUPS
+
+    # TODO: move to home.nix
     ollama = {
       enable = true;
       environmentVariables = {
