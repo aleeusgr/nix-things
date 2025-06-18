@@ -21,7 +21,7 @@ require("lazy").setup({
   { "LnL7/vim-nix" },                 -- Nix syntax
   { "nvim-telescope/telescope.nvim" },-- Fuzzy finder
   { "nvim-lualine/lualine.nvim" },    -- Status line
-  -- Add more as needed
+  { "github/copilot.vim" },
 })
 
 -- Your settings
