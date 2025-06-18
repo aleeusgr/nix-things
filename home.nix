@@ -144,10 +144,21 @@ in {
     tmux = {enable = true; };
   };
   services = {
+    # TODO: move ollama from L67 configuration.nix
+    # why there or here?
     gnome-keyring.enable = true;
     gpg-agent = {
       enable = true;
       pinentryPackage = pkgs.pinentry-gnome3;
+    };
+    safeeyes.enable = true;
+    snixembed = {
+      enable = true;
+
+      beforeUnits = [
+        # https://github.com/slgobinath/SafeEyes/wiki/How-to-install-backend-for-Safe-Eyes-tray-icon
+        "safeeyes.service"
+      ];
     };
   };
   home = {
