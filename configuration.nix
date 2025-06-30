@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
     ];
 
-  hardware.bluetooth.enable = false;
+  hardware.bluetooth.enable = true;
   hardware.graphics.enable = true;
   hardware.nvidia = {
 
