@@ -21,7 +21,19 @@ require("lazy").setup({
   { "LnL7/vim-nix" },                 -- Nix syntax
   { "nvim-telescope/telescope.nvim" },-- Fuzzy finder
   { "nvim-lualine/lualine.nvim" },    -- Status line
-  { "github/copilot.vim" },
+  -- { "github/copilot.vim" },
+  {
+  'Julian/lean.nvim',
+  event = { 'BufReadPre *.lean', 'BufNewFile *.lean' },
+
+  dependencies = {
+    'neovim/nvim-lspconfig',
+    'nvim-lua/plenary.nvim',
+  },
+  opts = { -- see below for full configuration options
+    mappings = true,
+	  }
+	}
 })
 
 -- Your settings
