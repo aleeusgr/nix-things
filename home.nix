@@ -9,7 +9,7 @@ let
 
       # UI
       brave
-      calibre
+      # calibre
       discord
       firefox
       fragments
@@ -56,7 +56,7 @@ let
       ihaskell
       haskell-ci
       fourmolu
-    ]) ++ (with pkgs.python311Packages; [
+    ]) ++ (with pkgs.python312Packages; [
       (llm.withPlugins {
         # llm-docs = true; # needs openAI key
         llm-groq = true;
