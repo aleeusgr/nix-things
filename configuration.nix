@@ -87,7 +87,7 @@
   
       # Configure keymap in X11
       layout = "us";
-      xkbOptions = "eurosign:e";
+      xkb.options = "eurosign:e";
       # Enable touchpad support (enabled default in most desktopManager).
       # libinput.enable = true;
     };
@@ -103,10 +103,19 @@
     openssh = {
       enable = true;
     };
+    kubernetes = {
+      easyCerts = true;
+      roles = [
+        "master"
+        "node"
+      ];
+      masterAddress = "127.0.0.1";
+      pki.enable = true;
+    };
   };
 
 
-  virtualisation.docker.enable = true;
+  # virtualisation.docker.enable = true;
 
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
@@ -126,7 +135,7 @@
     neovim
     wget
     jq
-    docker-compose # why do I need this here?
+    # docker-compose # why do I need this here?
     # direnv
     # nix-direnv
   ];
