@@ -75,9 +75,9 @@
   #   keyMap = "us";
   # };
 
-  # Enable the X11 windowing system.
   services = { 
     xserver = { 
+      # Enable the X11 windowing system.
       enable = true;
       videoDrivers = [ "nvidia" ];
 
@@ -104,7 +104,6 @@
       enable = true;
     };
     kubernetes = {
-      easyCerts = true;
       roles = [
         "master"
         "node"
