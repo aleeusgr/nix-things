@@ -1,26 +1,53 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# Usage: ./code-analyze.sh <output.md>
 
-# Check if all input files exist
-if [ ! -f "docs/k8s.md" ] || [ ! -f "k8s.nix" ] || [ ! -f "docs/context.md" ]; then
-    echo "One or more input files are missing."
-    exit 1
+OUT="${1:-analysis.md}"
+
+cat > "$OUT" << 'EOF'
+# Code Analysis Request
+
+## Problem Statement
+EOF
+
+read -p "Describe the problem: " -r PROBLEM
+echo "$PROBLEM" >> "$OUT"
+
+cat >> "$OUT" << 'EOF'
+
+## Code
+
+EOF
+
+read -p "Code file path: " -r CODE_FILE
+if [[ -f "$CODE_FILE" ]]; then
+    echo "\`\`\`${CODE_FILE##*.}" >> "$OUT"
+    cat "$CODE_FILE" >> "$OUT"
+    echo -e "\n\`\`\`" >> "$OUT"
+else
+    echo "⚠️  File not found: $CODE_FILE" >&2
 fi
 
-# Create the output file
-OUTPUT_FILE="llm_prompt.md"
-echo "# LLM Prompt for Code Analysis" > $OUTPUT_FILE
+cat >> "$OUT" << 'EOF'
 
-# Add issue description
-echo "# Issue Description" >> $OUTPUT_FILE
-cat "docs/k8s.md" >> $OUTPUT_FILE
+## Shell Output
 
-# Add code
-echo "# Code" >> $OUTPUT_FILE
-cat "k8s.nix" >> $OUTPUT_FILE
+EOF
 
-# Add additional context
-echo "# Additional Context" >> $OUTPUT_FILE
-cat "docs/context.md" >> $OUTPUT_FILE
+read -p "Log file path (or press Enter to skip): " -r LOG_FILE
+if [[ -n "$LOG_FILE" && -f "$LOG_FILE" ]]; then
+    echo "\`\`\`" >> "$OUT"
+    cat "$LOG_FILE" >> "$OUT"
+    echo -e "\n\`\`\`" >> "$OUT"
+fi
 
-echo "LLM prompt created successfully: $OUTPUT_FILE"
+cat >> "$OUT" << 'EOF'
 
+## Requested Analysis
+
+Please provide:
+1. **System Analysis**: Identify issues, root causes, and architectural concerns
+2. **Testing Roadmap**: Recommend test cases, coverage strategy, and validation approach
+
+EOF
+
+echo "✓ Generated: $OUT"
