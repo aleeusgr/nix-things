@@ -18,7 +18,7 @@ cat >> "$OUT" << 'EOF'
 
 EOF
 
-read -p "Code file path: " -r CODE_FILE
+read -p "Point to the code file: " -r CODE_FILE
 if [[ -f "$CODE_FILE" ]]; then
     echo "\`\`\`${CODE_FILE##*.}" >> "$OUT"
     cat "$CODE_FILE" >> "$OUT"
@@ -33,7 +33,7 @@ cat >> "$OUT" << 'EOF'
 
 EOF
 
-read -p "Log file path (or press Enter to skip): " -r LOG_FILE
+read -p "point to a log file: " -r LOG_FILE
 if [[ -n "$LOG_FILE" && -f "$LOG_FILE" ]]; then
     echo "\`\`\`" >> "$OUT"
     cat "$LOG_FILE" >> "$OUT"

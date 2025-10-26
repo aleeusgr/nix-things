@@ -175,7 +175,9 @@ in {
     # changes in each release.
     stateVersion = "21.11";
 
-    packages = defaultPkgs;
+    packages = defaultPkgs ++ [
+       (pkgs.writeShellScriptBin "pai-analyze" (builtins.readFile ./pai-analyze.sh))
+     ];
 
     sessionVariables = {
       #DISPLAY = ":0";
