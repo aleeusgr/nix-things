@@ -30,6 +30,7 @@ let
       radicle-node
 
       # dev toolchains
+      bats
       nodejs
       nodePackages.typescript-language-server
       nodePackages.typescript

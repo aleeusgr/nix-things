@@ -20,7 +20,8 @@ in
     kompose
     kubectl
     kubernetes
-    helmfile    # Add this
+    minikube # look up services!
+    helmfile
     kubernetes-helm
   ];
 
