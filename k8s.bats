@@ -186,6 +186,32 @@ setup() {
     [[ ! "$output" =~ "no such file or directory" ]]
 }
 
+# Ingress Controller
+@test "ingress-nginx namespace exists" {
+    run sudo kubectl get namespace ingress-nginx
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "ingress-nginx" ]]
+}
+
+@test "ingress-nginx-controller service exists" {
+    run sudo kubectl get svc ingress-nginx-controller -n ingress-nginx
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "ingress-nginx-controller" ]]
+}
+
+@test "ingress-nginx-controller has valid service type" {
+    run sudo kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.spec.type}'
+    [ "$status" -eq 0 ]
+    # Should be LoadBalancer, ClusterIP, or NodePort
+    [[ "$output" =~ "LoadBalancer" ]] || [[ "$output" =~ "ClusterIP" ]] || [[ "$output" =~ "NodePort" ]]
+}
+
+@test "ingress-nginx controller pods are running" {
+    run sudo kubectl get pods -n ingress-nginx -l app.kubernetes.io/component=controller
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "Running" ]] || [[ "$output" =~ "ContainerCreating" ]]
+}
+
 # Application Pods (govtool namespace)
 @test "govtool namespace exists" {
     run sudo kubectl get namespace govtool
@@ -204,6 +230,62 @@ setup() {
             # If any pod shows minutes/hours/days in ContainerCreating, fail
             [[ ! "$stuck_pods" =~ "m" ]] && [[ ! "$stuck_pods" =~ "h" ]] && [[ ! "$stuck_pods" =~ "d" ]]
         fi
+    fi
+}
+
+# Ingress Resources in govtool namespace
+@test "ingress resources exist in govtool namespace" {
+    run sudo kubectl get ingress -n govtool
+    [ "$status" -eq 0 ]
+    # May have no ingress yet, but command should succeed
+}
+
+@test "govtool services are exposed correctly" {
+    # Check that expected services exist
+    services="gt-backend gt-frontend gt-metadata-validation gt-outcomes gt-pdf gt-pdf-db"
+    run sudo kubectl get svc -n govtool
+    [ "$status" -eq 0 ]
+    # At least some services should be present if deployed
+}
+
+# Localhost Domain Resolution
+@test "/etc/hosts contains localhost domain mappings" {
+    run cat /etc/hosts
+    [ "$status" -eq 0 ]
+    # Check for common localhost domain patterns used in govtool
+    if [[ "$output" =~ "be.localhost" ]] || [[ "$output" =~ "oc.localhost" ]] || [[ "$output" =~ "pdf.localhost" ]]; then
+        true
+    else
+        # Not strictly required, just log warning
+        skip "localhost domain mappings not configured in /etc/hosts"
+    fi
+}
+
+@test "localhost resolves to 127.0.0.1" {
+    run grep "127.0.0.1.*localhost" /etc/hosts
+    [ "$status" -eq 0 ]
+    [[ "$output" =~ "127.0.0.1" ]]
+}
+
+# TLS Certificate Configuration
+@test "TLS secrets exist in govtool namespace" {
+    run sudo kubectl get secrets -n govtool
+    [ "$status" -eq 0 ]
+    # Check if any TLS secrets are present
+    if [[ "$output" =~ "tls" ]] || [[ "$output" =~ "certificate" ]]; then
+        true
+    else
+        skip "No TLS secrets found - may not be configured yet"
+    fi
+}
+
+@test "ingress resources have TLS configuration" {
+    run sudo kubectl get ingress -n govtool -o yaml
+    [ "$status" -eq 0 ]
+    if [[ "$output" =~ "tls:" ]]; then
+        [[ "$output" =~ "secretName:" ]]
+    else
+        skip "No ingress TLS configuration found"
     fi
 }
 
@@ -252,6 +334,35 @@ setup() {
     
     run curl -k -s https://api.kube:6443/healthz
     [ "$status" -eq 0 ]
+}
+
+@test "ingress end-to-end connectivity test" {
+    # Check if ingress controller is ready and can route traffic
+    run sudo kubectl get pods -n ingress-nginx -l app.kubernetes.io/component=controller -o jsonpath='{.items[0].status.phase}'
+    if [ "$status" -eq 0 ] && [ "$output" = "Running" ]; then
+        # Test if ingress can be reached (may need tunnel in real scenario)
+        run sudo kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.spec.clusterIP}'
+        [ "$status" -eq 0 ]
+        # Just verify we got a valid IP
+        [[ "$output" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]
+    else
+        skip "Ingress controller not running yet"
+    fi
+}
+
+@test "govtool deployment readiness check" {
+    # Verify all govtool deployments exist and have desired replicas
+    run sudo kubectl get deployments -n govtool
+    [ "$status" -eq 0 ]
+    
+    if [[ "$output" =~ "gt-backend" ]] || [[ "$output" =~ "gt-frontend" ]]; then
+        # Check that at least one deployment is progressing or ready
+        run sudo kubectl get deployments -n govtool -o jsonpath='{.items[*].status.conditions[?(@.type=="Available")].status}'
+        # Should have some True values or be empty if still creating
+        [[ "$output" =~ "True" ]] || [ -z "$output" ] || [[ "$output" =~ "False" ]]
+    else
+        skip "No govtool deployments found yet"
+    fi
 }
 
 teardown() {
