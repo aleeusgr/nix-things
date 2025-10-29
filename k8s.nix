@@ -8,56 +8,23 @@
 # [Certificate management](https://youtu.be/leR6m2plirs?t=513)
 
 { config, pkgs, ... }:
-let
-  kubeMasterIP = "127.0.0.1"; # use 10.1.1.2 to verify L5
-  kubeMasterHostname = "api.kube";
-  kubeMasterAPIServerPort = 6443;
-in
 {
-  networking.extraHosts = "${kubeMasterIP} ${kubeMasterHostname}";
-
   environment.systemPackages = with pkgs; [
     kompose
     kubectl
     kubernetes
-    minikube # look up services!
+    minikube
     helmfile
     kubernetes-helm
+    docker  # or podman, if you prefer
   ];
 
-  services.kubernetes = {
-    roles = ["master" "node"];
-    masterAddress = kubeMasterHostname;
-    apiserverAddress = "https://${kubeMasterHostname}:${toString kubeMasterAPIServerPort}";
-    easyCerts = true;
-    apiserver = {
-      securePort = kubeMasterAPIServerPort;
-      advertiseAddress = kubeMasterIP;
-    };
-    addons.dns.enable = true;
-    kubelet.extraOpts = "--fail-swap-on=false";
-  };
-
-  # Fix certmgr circular dependency
-  systemd.services.certmgr = {
-    after = [ "cfssl.service" ];
-    wants = [ "cfssl.service" ];
-  };
+  # Enable docker for minikube
+  virtualisation.docker.enable = true;
   
-  # Wait for API server to be actually ready
-  systemd.services.kube-addon-manager = {
-    after = [ "kube-apiserver.service" ];
-    wants = [ "kube-apiserver.service" ];
-    serviceConfig = {
-      ExecStartPre = [
-        ""
-        "${pkgs.bash}/bin/bash -c 'for i in {1..60}; do ${pkgs.curl}/bin/curl -k -s https://${kubeMasterHostname}:${toString kubeMasterAPIServerPort}/healthz && break || sleep 1; done'"
-      ];
-    };
-  };
-
-  # Configure kubectl for your user:
-  environment.sessionVariables = {
-    KUBECONFIG = "/etc/${config.services.kubernetes.pki.etcClusterAdminKubeconfig}";
-  };
+  # Add your user to docker group
+  users.users.alex.extraGroups = [ "docker" ];
+  
+  # Minikube will manage its own kubeconfig in ~/.kube/config
+  # No need to set KUBECONFIG to /etc/kubernetes
 }
