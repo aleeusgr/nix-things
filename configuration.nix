@@ -107,8 +107,6 @@
   };
 
 
-  virtualisation.docker.enable = true;
-
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
@@ -117,7 +115,7 @@
   users.users.alex = {
     isNormalUser = true;
     initialPassword = "pass";
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
   nixpkgs.config.allowUnfree = true;  
   # List packages installed in system profile. To search, run:
@@ -127,14 +125,11 @@
     neovim
     wget
     jq
-    docker-compose # why do I need this here?
     # direnv
     # nix-direnv
   ];
 
   environment.variables.EDITOR = "nvim";
-
-  #nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nix = {
     # Automate garbage collection

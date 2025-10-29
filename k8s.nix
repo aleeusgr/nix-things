@@ -1,11 +1,7 @@
-# - source: https://wiki.nixos.org/wiki/Kubernetes
-# - Check service status: `systemctl status certmgr cfssl`
-# - Verify the file exists: `ls -la /var/lib/kubernetes/secrets/apitoken.secret`
-# - Check logs: `journalctl -u certmgr -u cfssl -b`
-# - verify `kubectl version` error: The connection to the server localhost:8080 was refused - did you specify the right host or port?
-# - `systemctl status cfssl certmgr.service` shows no errors
+# source: https://wiki.nixos.org/wiki/Kubernetes
 # https://nixos.org/manual/nixos/stable/#sec-kubernetes
 # [Certificate management](https://youtu.be/leR6m2plirs?t=513)
+# claude.ai/chat/28f9b724-286f-466a-b915-ad4fee42c145
 
 { config, pkgs, ... }:
 {
