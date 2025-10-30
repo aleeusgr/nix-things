@@ -23,4 +23,11 @@
   
   # Minikube will manage its own kubeconfig in ~/.kube/config
   # No need to set KUBECONFIG to /etc/kubernetes
+  networking.extraHosts = ''
+    127.0.0.1 be.localhost
+    127.0.0.1 oc.localhost
+    127.0.0.1 pdf.localhost
+    127.0.0.1 frontend.localhost
+    127.0.0.1 metadata.localhost
+  '';
 }
