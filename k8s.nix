@@ -20,7 +20,8 @@
   
   # Add your user to docker group
   users.users.alex.extraGroups = [ "docker" ];
-  
+
+  # aaboyle878/govtool-k8-manifest
   # Minikube will manage its own kubeconfig in ~/.kube/config
   # No need to set KUBECONFIG to /etc/kubernetes
   networking.extraHosts = ''
