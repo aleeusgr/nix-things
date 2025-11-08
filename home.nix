@@ -30,6 +30,7 @@ let
       radicle-node
 
       # dev toolchains
+      goose-cli
       bats
       nodejs
       nodePackages.typescript-language-server
