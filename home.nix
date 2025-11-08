@@ -38,7 +38,7 @@ let
       nodePackages.prettier
       nodePackages.eslint
       lean4
-      python
+      python3
       gcc
       cargo
       rustc
