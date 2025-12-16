@@ -19,8 +19,14 @@ let
       vlc
       zoom-us
       zotero
-      mixxx
       element-desktop
+
+      # music
+      mixxx
+      midimonster
+      yoshimi
+      hydrogen
+      sooperlooper
 
       # hacky stuff
       pre-commit
@@ -30,7 +36,6 @@ let
       radicle-node
 
       # dev toolchains
-      goose-cli
       bats
       nodejs
       nodePackages.typescript-language-server
