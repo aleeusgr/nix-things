@@ -23,10 +23,8 @@ let
 
       # music
       mixxx
-      midimonster
       yoshimi
       hydrogen
-      sooperlooper
 
       # hacky stuff
       pre-commit
