@@ -25,6 +25,7 @@ let
       mixxx
       yoshimi
       hydrogen
+      ffmpeg
 
       # hacky stuff
       pre-commit
@@ -180,7 +181,7 @@ in {
     stateVersion = "21.11";
 
     packages = defaultPkgs ++ [
-       (pkgs.writeShellScriptBin "pai-analyze" (builtins.readFile ./pai-analyze.sh))
+       (pkgs.writeShellScriptBin "add-to-crate" (builtins.readFile ./add-to-crate.sh))
      ];
 
     sessionVariables = {
