@@ -52,6 +52,11 @@ let
       ripgrep
       nil
       nixpkgs-fmt
+
+      # Dong Vui
+      mtr
+      visidata
+      rar
     ] ++ (with pkgs.haskellPackages; [
       cabal2nix
       cabal-install
