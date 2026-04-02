@@ -186,7 +186,7 @@ in {
     stateVersion = "21.11";
 
     packages = defaultPkgs ++ [
-       (pkgs.writeShellScriptBin "add-to-crate" (builtins.readFile ./add-to-crate.sh))
+       (pkgs.writeShellScriptBin "genpass" (builtins.readFile ./genpass.sh))
      ];
 
     sessionVariables = {
