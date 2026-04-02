@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./k8s.nix
     ];
 
   hardware.bluetooth.enable = true;
@@ -63,6 +62,19 @@
   # Per-interface useDHCP will be mandatory in the future, so this generated config
   # replicates the default behaviour.
   networking.useDHCP = false;
+  networking.networkmanager = {
+    enable = true;
+    # wifi.powersave = false;
+    settings = {
+      device = {
+        "wifi.scan-rand-mac-address" = "no";
+      };
+      connection = {
+        "wifi.cloned-mac-address" = "permanent";
+      };
+    };
+  };
+
   # networking.interfaces.wlp6s0.useDHCP = true;
 
   # Configure network proxy if necessary
