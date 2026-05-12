@@ -9,7 +9,7 @@ let
 
       # UI
       brave
-      # calibre
+      calibre
       discord
       firefox
       fragments
@@ -19,6 +19,7 @@ let
       vlc
       zoom-us
       zotero
+      zulip
       element-desktop
 
       # music
@@ -54,9 +55,11 @@ let
       nixpkgs-fmt
 
       # Dong Vui
-      mtr
+      mtr 
       visidata
       rar
+      localsend
+      inkscape
     ] ++ (with pkgs.haskellPackages; [
       cabal2nix
       cabal-install
@@ -74,6 +77,7 @@ let
         llm-jq = true;
         llm-ollama = true;
       })
+      qrcode
     ]);
 in {
   dconf = {
