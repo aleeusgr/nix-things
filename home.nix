@@ -38,10 +38,10 @@ let
       # dev toolchains
       bats
       nodejs
-      nodePackages.typescript-language-server
-      nodePackages.typescript
-      nodePackages.prettier
-      nodePackages.eslint
+      typescript-language-server
+      typescript
+      #nodePackages.prettier
+      #nodePackages.eslint
       lean4
       python3
       gcc

@@ -21,6 +21,7 @@
   fileSystems."/boot/efi" =
     { device = "/dev/disk/by-uuid/E8A8-FF52";
       fsType = "vfat";
+      options = ["umask=0077"]; # fix #107 security hole
     };
 
   swapDevices = [ ];
