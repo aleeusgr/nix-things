@@ -64,12 +64,18 @@
   networking.useDHCP = false;
   networking.networkmanager = {
     enable = true;
-    # wifi.powersave = false;
+
+    # Diagnostic: avoid Wi-Fi powersave while debugging drops/reconnect failures.
+    wifi.powersave = false;
+
     settings = {
       device = {
+        # Avoid randomized MACs during scans.
         "wifi.scan-rand-mac-address" = "no";
       };
+
       connection = {
+        # Prefer the hardware MAC for Wi-Fi connections.
         "wifi.cloned-mac-address" = "permanent";
       };
     };
