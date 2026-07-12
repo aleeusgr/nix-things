@@ -27,6 +27,9 @@ let
       yoshimi
       hydrogen
       ffmpeg
+      shntool
+      cuetools
+      flac
 
       # hacky stuff
       pre-commit
