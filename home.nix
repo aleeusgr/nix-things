@@ -74,12 +74,12 @@ let
       haskell-ci
       fourmolu
     ]) ++ (with pkgs.python312Packages; [
-      (llm.withPlugins {
-        # llm-docs = true; # needs openAI key
-        llm-groq = true;
-        llm-jq = true;
-        llm-ollama = true;
-      })
+      # (llm.withPlugins {
+      #   # llm-docs = true; # needs openAI key
+      #   llm-groq = true;
+      #   llm-jq = true;
+      #   llm-ollama = true;
+      # })
       qrcode
     ]);
 in {
