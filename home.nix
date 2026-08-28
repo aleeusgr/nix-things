@@ -21,6 +21,8 @@ let
       zotero
       zulip
       element-desktop
+      opencode
+      codex
 
       # music
       mixxx
