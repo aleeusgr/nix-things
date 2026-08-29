@@ -16,7 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- Add plugins here:
   { "neovim/nvim-lspconfig" },        -- LSP support
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" }, -- better syntax highlighting
+  { "nvim-treesitter/nvim-treesitter", branch = "main", build = ":TSUpdate" }, -- better syntax highlighting
   { "nvim-lua/plenary.nvim" },        -- Useful Lua functions
   { "LnL7/vim-nix" },                 -- Nix syntax
   { "nvim-telescope/telescope.nvim" },-- Fuzzy finder
@@ -50,7 +50,7 @@ vim.o.errorbells = false
 vim.o.visualbell = true
 
 -- Example: treesitter config
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.config').setup {
   highlight = { enable = true },
   ensure_installed = { "typescript", "tsx", "javascript", "lua", "nix", "haskell", "rust" }, -- add your languages
 }
@@ -62,7 +62,7 @@ require('lualine').setup {}
 require('telescope').setup {}
 
 -- Setup Haskell LSP using nvim-lspconfig
-require('lspconfig').hls.setup{
+vim.lsp.config.hls = {
   settings = {
     haskell = {
       formattingProvider = "formolu", -- or any you prefer
@@ -71,7 +71,7 @@ require('lspconfig').hls.setup{
 }
 
 -- Setup Rust LSP (rust-analyzer) using nvim-lspconfig
-require('lspconfig').rust_analyzer.setup{
+vim.lsp.config.rust_analyzer = {
   settings = {
     ['rust-analyzer'] = {
       cargo = { allFeatures = true },
@@ -88,7 +88,7 @@ vim.keymap.set('n', 'en', vim.diagnostic.goto_next, { desc = "Code action" })
 vim.keymap.set('n', 'ep', vim.diagnostic.goto_prev, { desc = "Code action" })
 
 
-require('lspconfig').nil_ls.setup{
+vim.lsp.config.nil_ls = {
   settings = {
     ['nil'] = {
       formatting = {
@@ -98,7 +98,7 @@ require('lspconfig').nil_ls.setup{
   }
 }
 
-require('lspconfig').ts_ls.setup{}
+vim.lsp.config.ts_ls = {}
 -- require('llm').setup {
 --   model = "codegemma",
 --   backend = "ollama",
