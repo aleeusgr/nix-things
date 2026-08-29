@@ -60,7 +60,7 @@ let
       nixpkgs-fmt
 
       # Dong Vui
-      mtr 
+      mtr
       visidata
       rar
       localsend
@@ -84,7 +84,8 @@ let
       # })
       qrcode
     ]);
-in {
+in
+{
   dconf = {
     enable = true;
     settings."org/gnome/desktop/calendar".show-weekdate = true;
@@ -107,25 +108,30 @@ in {
       enableBashIntegration = true; # see note on other shells below
       nix-direnv.enable = true;
     };
+    diff-so-fancy = {
+      enable = true;
+      enableGitIntegration = true;
+    };
     git = {
       enable = true;
-      userName = "Alex";
-      userEmail = "alexeusgr@gmail.com";
-      diff-so-fancy.enable = true;
-      signing = {
-        signByDefault = true;
-        key = "603C BC84 E2C1 4092 A904  B9A0 17BD F408 11CF 970A";
-      };
-      extraConfig = {
+      settings = {
+        user.name = "Alex";
+        user.email = "alexeusgr@gmail.com";
         commit.gpgsign = true;
         tag.gpgsign = true;
         gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
+      };
+      signing = {
+        signByDefault = true;
+        key = "603C BC84 E2C1 4092 A904  B9A0 17BD F408 11CF 970A";
       };
     };
     gpg = { enable = true; };
     # Neovim is starting to get huge; should move to a separate file.
     neovim = {
       enable = true;
+      withRuby = false;
+      withPython3 = false;
       coc.enable = false; # using coc and lua causes hls to crash.
       coc.settings = {
         "suggest.noselect" = true;
@@ -161,7 +167,7 @@ in {
         EOF
       '';
     };
-    tmux = {enable = true; };
+    tmux = { enable = true; };
   };
   services = {
     # TODO: move ollama from L67 configuration.nix
@@ -169,7 +175,7 @@ in {
     gnome-keyring.enable = true;
     gpg-agent = {
       enable = true;
-      pinentryPackage = pkgs.pinentry-gnome3;
+      pinentry.package = pkgs.pinentry-gnome3;
     };
     safeeyes.enable = true;
     snixembed = {
@@ -195,8 +201,8 @@ in {
     stateVersion = "21.11";
 
     packages = defaultPkgs ++ [
-       (pkgs.writeShellScriptBin "genpass" (builtins.readFile ./genpass.sh))
-     ];
+      (pkgs.writeShellScriptBin "genpass" (builtins.readFile ./genpass.sh))
+    ];
 
     sessionVariables = {
       #DISPLAY = ":0";

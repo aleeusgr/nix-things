@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       #./odoo.nix
     ];
@@ -15,39 +16,39 @@
   hardware.graphics.enable = true;
   hardware.nvidia = {
 
-      # Modesetting is required.
-      modesetting.enable = true;
+    # Modesetting is required.
+    modesetting.enable = true;
 
-      # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-      # Enable this if you have graphical corruption issues or application crashes after waking
-      # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-      # of just the bare essentials.
-      powerManagement.enable = false;
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # of just the bare essentials.
+    powerManagement.enable = false;
 
-      # Fine-grained power management. Turns off GPU when not in use.
-      # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-      powerManagement.finegrained = false;
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
 
-      # Use the NVidia open source kernel module (not to be confused with the
-      # independent third-party "nouveau" open source driver).
-      # Support is limited to the Turing and later architectures. Full list of 
-      # supported GPUs is at: 
-      # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
-      # Only available from driver 515.43.04+
-      open = false;
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: 
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Only available from driver 515.43.04+
+    open = false;
 
-      # Enable the Nvidia settings menu,
-          # accessible via `nvidia-settings`.
-      nvidiaSettings = true;
+    # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
 
-      # Optionally, you may need to select the appropriate driver version for your specific GPU.
-      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
-  boot.kernelParams = ["pcie_aspm=off"];
+  boot.kernelParams = [ "pcie_aspm=off" ];
 
   # boot.loader.grub.device = "/dev/sda";
   # boot.loader.grub.useOSProber = true;
@@ -97,21 +98,24 @@
   # };
 
   # Enable the X11 windowing system.
-  services = { 
-    xserver = { 
+  services = {
+    xserver = {
       enable = true;
       videoDrivers = [ "nvidia" ];
 
-      # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-  
       # Configure keymap in X11
-      layout = "us";
-      xkbOptions = "eurosign:e";
+      xkb = {
+        layout = "us";
+        options = "eurosign:e";
+      };
       # Enable touchpad support (enabled default in most desktopManager).
       # libinput.enable = true;
     };
+
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+
     # printing.enable = true; #CUPS
 
     # TODO: move to home.nix
@@ -137,7 +141,7 @@
     initialPassword = "pass";
     extraGroups = [ "wheel" "dialout" ]; # Enable ‘sudo’ for the user.
   };
-  nixpkgs.config.allowUnfree = true;  
+  nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -164,17 +168,17 @@
       # Automate `nix store --optimise`
       auto-optimise-store = true;
 
-      experimental-features = ["nix-command" "flakes"];
-      
+      experimental-features = [ "nix-command" "flakes" ];
+
       substituters = [
-      "https://cache.nixos.org/"
-      "https://cache.iog.io"
-      # "https://cache.zw3rk.com"
+        "https://cache.nixos.org/"
+        "https://cache.iog.io"
+        # "https://cache.zw3rk.com"
       ];
       trusted-public-keys = [
-      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-      "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+        "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
       ];
     };
     package = pkgs.nixVersions.latest;
@@ -198,6 +202,6 @@
   system.stateVersion = "21.11"; # Did you read the comment?
 
   nixpkgs.config.permittedInsecurePackages = [
-                "python-2.7.18.8"
-              ];
+    "python-2.7.18.8"
+  ];
 }
